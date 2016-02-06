@@ -1,0 +1,76 @@
+﻿@model MyAppointer.Models.Jobs
+
+@{
+    ViewBag.Title = "Creating your Job";
+}
+
+<h2>Creating your Job</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Jobs</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobPhone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.JobPhone)
+            @Html.ValidationMessageFor(model => model.JobPhone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.About)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.About)
+            @Html.ValidationMessageFor(model => model.About)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobTypeId, "Job Types")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("JobTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.JobTypeId)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.FirstJobOwner, "Users")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FirstJobOwner", String.Empty)
+            @Html.ValidationMessageFor(model => model.FirstJobOwner)
+        </div>*@
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

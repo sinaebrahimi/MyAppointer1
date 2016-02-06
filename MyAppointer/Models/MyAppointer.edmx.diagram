@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="509f1b2b7a66438fb94fbd1ddd4fa779" Name="Diagram1">
+        <EntityTypeShape EntityType="MyAppointerModel.Appointments" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.JobOwners" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.Jobs" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.JobTypes" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.OffDays" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.Services" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.Users" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.WeeklyWorkingDays" Width="1.5" PointX="10.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.WeeklyWorkingTimes" Width="1.5" PointX="10.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.WorkingTimes" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="MyAppointerModel.FK_Appointments_JobOwners" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_Appointments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_JobOwners_Jobs" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_JobOwners_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_Services_JobOwners" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_WorkingTimes_JobOwners" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_Jobs_JobTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_Jobs_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_OffDays_WorkingTimes" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_WeeklyWorkingDays_WorkingTimes" ManuallyRouted="false" />
+        <AssociationConnector Association="MyAppointerModel.FK_WeeklyWorkingTimes_WorkingTimes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

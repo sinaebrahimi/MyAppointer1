@@ -1,0 +1,61 @@
+﻿@model MyAppointer.Models.Jobs
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Jobs</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.JobPhone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.JobPhone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.About)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.About)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.JobTypes.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.JobTypes.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Users.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Users.Email)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

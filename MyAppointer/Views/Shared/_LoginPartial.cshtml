@@ -1,0 +1,22 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+        }
+        @Html.ActionLink(User.Identity.Name, "Edit", "User", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" }) wellcome
+        @*User.Identity.Name need to be changed*@
+    </text>
+}
+else
+{
+    <ul>
+
+        <li><span class="glyphicon glyphicon-lock"></span>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("SignUp", "Create", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+
+    </ul>
+}

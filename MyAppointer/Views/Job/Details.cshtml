@@ -1,0 +1,57 @@
+﻿@model MyAppointer.Models.Jobs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Jobs</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.JobPhone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.JobPhone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.About)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.About)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.JobTypes.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.JobTypes.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Users.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Users.Email)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -448,6 +448,8 @@
     <Content Include="Views\Job\Create.cshtml" />
     <Content Include="Views\Job\Edit.cshtml" />
     <Content Include="Views\Job\Delete.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\AfterLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

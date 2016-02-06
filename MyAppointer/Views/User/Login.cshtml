@@ -1,0 +1,50 @@
+﻿@model MyAppointer.Models.Users
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    //this  is for create form tag
+    @Html.AntiForgeryToken()          // this is for prevent CSRF attack
+                                    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+        <div style="border: 1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+    <table>
+        <tr>
+            <td>@Html.LabelFor(a => a.Email)</td>
+            <td>@Html.TextBoxFor(a => a.Email)</td>
+            <td>@Html.ValidationMessageFor(a => a.Email)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.Password)
+            </td>
+            <td>
+                @Html.PasswordFor(a => a.Password)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.Password)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+
+@* This below line is for create javascript section *@
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

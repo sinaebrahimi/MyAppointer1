@@ -1,0 +1,13 @@
+﻿@model MyAppointer.Models.Users
+
+@{
+    ViewBag.Title = "AfterLogin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["LogedUserFullname"] != null)
+{
+    <text>
+        Welcome @Session["LogedUserFullname"].ToString()
+    </text>
+}

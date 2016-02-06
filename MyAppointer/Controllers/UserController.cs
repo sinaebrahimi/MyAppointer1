@@ -91,6 +91,44 @@ namespace MyAppointer.Controllers
 
             return View(users);//jobs
         }
+        
+        //login
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Users u)
+        {
+            // this action is for handle post (login)
+            if (ModelState.IsValid) // this is check validity
+            {
+                using (db)
+                {
+                    var v = db.Users.Where(a => a.Email.Equals(u.Email) && a.Password.Equals(u.Password)).FirstOrDefault();
+                    if (v != null)
+                    {
+                        Session["LogedUserID"] = v.Id.ToString();
+                        Session["LogedUserFullname"] = v.FullName.ToString();
+                        return RedirectToAction("AfterLogin");
+                    }
+                }
+            }
+            return View(u);
+        }
+        public ActionResult AfterLogin()
+        {
+            if (Session["LogedUserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
 
         public ActionResult SelectCategory()
         {

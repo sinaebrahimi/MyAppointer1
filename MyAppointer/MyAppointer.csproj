@@ -450,6 +450,7 @@
     <Content Include="Views\Job\Delete.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\AfterLogin.cshtml" />
+    <Content Include="Views\User\LogOff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,21 +1,15 @@
-﻿@if (Request.IsAuthenticated)
+﻿@if (Session["LogedUserFullname"] != null)
 {
     <text>
-
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-        {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
-        }
-        @Html.ActionLink(User.Identity.Name, "Edit", "User", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" }) wellcome
-        @*User.Identity.Name need to be changed*@
+        Welcome @Session["LogedUserFullname"].ToString()
     </text>
+     <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Log out", "LogOff", "User", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
 }
 else
 {
     <ul>
 
-        <li><span class="glyphicon glyphicon-lock"></span>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><span class="glyphicon glyphicon-lock"></span>@Html.ActionLink("Login", "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("SignUp", "Create", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
     </ul>

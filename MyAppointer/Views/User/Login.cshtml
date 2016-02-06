@@ -4,47 +4,54 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@using (Html.BeginForm("Login", "Home", FormMethod.Post))
-{
-    //this  is for create form tag
-    @Html.AntiForgeryToken()          // this is for prevent CSRF attack
-                                    @Html.ValidationSummary(true)
-    if (@ViewBag.Message != null)
-    {
-        <div style="border: 1px solid red">
-            @ViewBag.Message
-        </div>
-    }
-    <table>
-        <tr>
-            <td>@Html.LabelFor(a => a.Email)</td>
-            <td>@Html.TextBoxFor(a => a.Email)</td>
-            <td>@Html.ValidationMessageFor(a => a.Email)</td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(a => a.Password)
-            </td>
-            <td>
-                @Html.PasswordFor(a => a.Password)
-            </td>
-            <td>
-                @Html.ValidationMessageFor(a => a.Password)
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Login" />
-            </td>
-            <td></td>
-        </tr>
-    </table>
-}
-
-@* This below line is for create javascript section *@
-
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+                        
+                @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                    {
+                         //this  is for create form tag
+                         //   @Html.AntiForgeryToken()          // this is for prevent CSRF attack
+                           // @Html.ValidationSummary(true)
+                           <img style="margin-left:100px;" src="~/Content/images/default_user_icon.png" />
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <fieldset>
+                                <legend>Log in Form</legend>
+                                <ol>
+                                    <li>
+                                        @Html.LabelFor(m => m.Email)
+                                        @Html.TextBoxFor(m => m.Email)
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </li>
+                                    <li>
+                                        @Html.LabelFor(m => m.Password)
+                                        @Html.PasswordFor(m => m.Password)
+                                        @Html.ValidationMessageFor(m => m.Password)
+                                    </li>
+                                </ol>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in">
+                                    Sign in
+                                </button>
+                            </fieldset>
+                            <p>
+                                @Html.ActionLink("Create", "Create") if you don't have an account.
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+                       
+
+                            

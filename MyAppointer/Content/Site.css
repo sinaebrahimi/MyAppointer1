@@ -6,7 +6,7 @@ body {
     background-color: #fff;
     border-top: solid 10px #000;
     color: #333;
-    font-size: .85em;
+    font-size: 1.3em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
@@ -410,7 +410,7 @@ fieldset {
 
 label {
     display: block;
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: 600;
 }
 

@@ -192,7 +192,7 @@ namespace MyAppointer.Controllers
 
              Session["LogedUserID"] = null;
              Session["LogedUserFullname"] = null;
-             return RedirectToAction("Index", "Home");//sth
+             return RedirectToAction("Index", "Home");//sths
          }
 
 

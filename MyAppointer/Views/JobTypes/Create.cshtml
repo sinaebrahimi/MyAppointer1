@@ -4,6 +4,12 @@
     ViewBag.Title = "Create";
 }
 
+@*<head>
+
+    <link href="~/Content/PersianDatePicker.min.css" rel="stylesheet" />
+    <script src="~/Scripts/PersianDatePicker.min.js"></script>
+</head>*@
+
 <h2>Create</h2>
 
 @using (Html.BeginForm()) {
@@ -21,6 +27,20 @@
             @Html.ValidationMessageFor(model => model.Title)
         </div>
 
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.AddDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddDate)
+            @Html.ValidationMessageFor(model => model.AddDate)
+        </div>*@
+
+        
+
+        @*@Html.TextBoxFor(model => model, new { @ETname = "date", @Value = @Model != null ? Model.Value.ToString("yyyy/MM/dd") : DateTime.Now.Date.ToString("yyyy/MM/dd"), onclick = "PersianDatePicker.Show(this)" })*@
+
+        
+
         <p>
             <input type="submit" value="Create" />
         </p>
@@ -33,4 +53,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/PersianDatePicker.js")
 }

@@ -34,11 +34,20 @@ namespace MyAppointer.Controllers
             return View(jobtypes);
         }
 
+        public ActionResult DateTest()
+        {
+
+
+            return View();
+        }
+
         //
         // GET: /JobTypes/Create
 
         public ActionResult Create()
         {
+
+
             return View();
         }
 
@@ -49,6 +58,10 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(JobTypes jobtypes)
         {
+
+
+
+
             if (ModelState.IsValid)
             {
                 db.JobTypes.Add(jobtypes);

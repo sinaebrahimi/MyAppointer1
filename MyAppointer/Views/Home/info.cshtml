@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "info";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/week-picker-view.css" rel="stylesheet" />
+    <link href="~/Content/TimeTable.css" rel="stylesheet" />
+    <script src="~/Scripts/TimeTable.js"></script>
+    <script src="~/Scripts/week-picker.js"></script>
+    <title>Testing Calender</title>
+</head>
+<body>
+    @ViewBag.Message
+    <input data-weekpicker="weekpicker" data-week_start="1" />
+    </br>
+    @*<table>
+        @foreach (MyAppointer.Models.WeeklyWorkingDays day in ViewBag.days)
+        { 
+            <tr><td> @day.Day </td></tr>
+        }
+    </table>*@
+
+    <input id="daysNumber" type="text" value="@ViewBag.day" />
+
+    @Html.Partial("~/Views/Shared/TimeTable.cshtml")
+</body>
+</html>

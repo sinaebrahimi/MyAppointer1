@@ -31,7 +31,7 @@ namespace MyAppointer.Controllers
         //
         // GET: /User/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(int id)
         {
             Users users = db.Users.Find(id);
             if (users == null)
@@ -67,7 +67,6 @@ namespace MyAppointer.Controllers
             {
                 db.Users.Add(users);
                 db.SaveChanges();
-
 
                 if (users.Role == "jobowner")
                 {
@@ -115,13 +114,20 @@ namespace MyAppointer.Controllers
                    {
                        Session["LogedUserID"] = v.Id.ToString();
                        Session["LogedUserFullname"] = v.FullName.ToString();
+                       ViewData["id"]= v.Id;
+                       //HttpCookie aCookie = new HttpCookie("userInfo");
+                       //aCookie.Values["Id"] = u.Id.ToString();
+                       //aCookie.Values["lastVisit"] = DateTime.Now.ToString();
+                       //aCookie.Expires = DateTime.Now.AddDays(1);
+                       //Response.Cookies.Add(aCookie);
                        return RedirectToAction("AfterLogin", "User");
                    }
                    else
                    {
-                       return RedirectToAction("Create", "User");
+                       ModelState.AddModelError("", "Email Or Password is Incorrect.");
                    }
                }
+          return View();
         //}
          }
          public ActionResult AfterLogin()
@@ -132,7 +138,7 @@ namespace MyAppointer.Controllers
              }
              else
              {
-                 return RedirectToAction("Index");
+                 return RedirectToAction("Login");
               }
          }
 
@@ -188,15 +194,10 @@ namespace MyAppointer.Controllers
          //    Request.Cookies.Remove("UserId");
          //    FormsAuthentication.SignOut();
          //    return RedirectToAction("Login", "Login");
-
-
              Session["LogedUserID"] = null;
              Session["LogedUserFullname"] = null;
              return RedirectToAction("Index", "Home");//sths
          }
-
-
-
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
@@ -219,8 +220,6 @@ namespace MyAppointer.Controllers
         }
         #endregion
 
-
-
         public ActionResult SelectCategory()
         {
 
@@ -236,34 +235,44 @@ namespace MyAppointer.Controllers
             return View();
 
         }
-
         //
         // GET: /User/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        [HttpGet]
+        public ActionResult Edit(int? id)
         {
-            Users users = db.Users.Find(id);
-            if (users == null)
+            Users user = db.Users.Find(id);
+            if (user == null)
             {
-                return HttpNotFound();
+               // return HttpNotFound();
             }
-            return View(users);
+            return View(user);
         }
-
-        //
         // POST: /User/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Users users)
+        public ActionResult Edit(Users user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(users).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
+                //db.Entry(user).State = EntityState.Modified;
+                //db.Entry(user.Email).State = (model)
+                //db.Entry(user.Password).State = EntityState.Modified;
+               // db.Entry(user.Phone).State = EntityState.Modified;
+               // db.Entry(user.FullName).State = EntityState.Modified;
+               // db.Entry(user.Password).State = EntityState.Modified;
+               // db.Entry(user.About).State = EntityState.Modified;
+                //db.Entry(user.City).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //if (v != null)
+               // {
+                    ViewBag.Message = "Changes Successfully Edited";
+                //}
+                    return RedirectToAction("AfterLogin", "User");
             }
-            return View(users);
+            return View(user);
         }
 
         //

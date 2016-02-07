@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <script src="~/Scripts/jquery-1.8.2-vsdoc.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/css/chosen.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery.noty.css" rel="stylesheet" />
+    <link href="~/Content/css/charisma-app.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar" style="margin-left:5px;">
+        <ul id="menu">
+            <li>@Html.ActionLink("Acount", "Acount", "Home")</li>
+
+            <li>@Html.ActionLink("Search", "Search", "Home")</li>
+            <li>@Html.ActionLink("Help", "Help", "Home")</li>
+
+        </ul>
+
+        <ul class="nav navbar-nav" style="float:right;margin-right:70px;font-size:20px;">
+            <li class="dropdown">
+                <!--put username-->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Username<span class="glyphicon glyphicon-user pull-right"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <!-- topbar ends -->
+    <div class="ch-container">
+        <div class="row">
+
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav" style="width:250px;margin-left:-15px;margin-top:20px">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">picture</li>
+                            <li>
+                                <a class="ajax-link" href="index.html"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
+                            </li>
+
+                            <li>
+                                <a class="ajax-link" href="gallery.html"><i class="glyphicon glyphicon-picture"></i><span> Services</span></a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Calendar</span></a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="grid.html">
+                                    <i class="glyphicon glyphicon-th"></i><span> Users</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <section class="content-wrapper main-content clear-fix" style="min-height:800px;">
+                @RenderBody()
+            </section>
+            <footer>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row">
+
+
+                            <div class="col-sm-6">
+                                <div class="copy-right text-right">
+                                    <p>&copy; Copyright <strong>Appointer</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- footer-bottom -->
+            </footer>
+        </div><!--/.fluid-container-->
+        <!-- external javascript -->
+
+        <script src="~/Scripts/chosen.jquery.min.js"></script>
+        <script src="~/Scripts/jquery.colorbox-min.js"></script>
+</body>
+</html>

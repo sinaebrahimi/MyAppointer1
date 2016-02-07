@@ -79,7 +79,7 @@ h4,
 h5,
 h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 
@@ -631,7 +631,12 @@ navbar-p
 
 }
 
-
+.ajax-link
+{
+    text-decoration:none;
+    font-family:sans-serif;
+    font-size:25px;
+}
 
 @media(max-width:767px) {
     .intro-message {

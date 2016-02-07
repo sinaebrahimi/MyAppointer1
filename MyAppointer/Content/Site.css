@@ -100,6 +100,7 @@ h5, h6 {
    
     clear: both;
     padding-bottom: 35px;
+    min-height:600px;
 }
 
     .main-content {

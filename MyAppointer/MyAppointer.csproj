@@ -437,6 +437,9 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\AfterLogin.cshtml" />
+    <Content Include="Views\User\LogOff.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\JobTypes\Index.cshtml" />

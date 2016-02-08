@@ -61,7 +61,7 @@ namespace MyAppointer.Controllers
             var weeklyworkingTimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             foreach (WeeklyWorkingTimes wwt in weeklyworkingTimes)
             {
-                //ViewBag.Message += "," + wwt.StartTime+"-" + wwt.EndTime;
+                ViewBag.Times += wwt.StartTime+"-" + wwt.EndTime + ",";
             }
 
             var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));

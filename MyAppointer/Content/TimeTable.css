@@ -1,3 +1,21 @@
+.table {
+    direction: rtl;
+}
+
+.table th {
+    text-align: center !important;
+}
+
+.table tr td:first-child {
+    width:20% !important;
+}
+
+.table tr td .times.progress .progress-bar{
+    float:right;
+    position:relative;
+}
+
 .disabled{
-    color:red;
+    color: #ccc;
+    background-color: #9d9d9d;
 }

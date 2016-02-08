@@ -40,9 +40,7 @@ namespace MyAppointer.Models
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Mobile")]
         [Required]
-
         [StringLength(11)]
-
         //^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$
         [RegularExpression(@"^09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{7}$", ErrorMessage = "Enter Your Mobile Phone Number like this: 09127404062")]
         public string Phone { get; set; }

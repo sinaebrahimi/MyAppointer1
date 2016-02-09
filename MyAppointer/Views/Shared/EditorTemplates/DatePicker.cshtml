@@ -2,5 +2,7 @@
 @model DateTime?
 <link href="~/Content/PersianDatePicker.min.css" rel="stylesheet" />
 <script src="~/Scripts/PersianDatePicker.min.js"></script>
+<link href="~/Content/week-picker-view.css" rel="stylesheet" />
+<script src="~/Scripts/week-picker.js"></script>
 
 @Html.TextBoxFor(model => model, new { @ETname = "date", @Value = @Model != null ? Model.Value.ToString("yyyy/MM/dd") : DateTime.Now.Date.ToString("yyyy/MM/dd"), onclick = "PersianDatePicker.Show(this)" })

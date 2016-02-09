@@ -41,6 +41,14 @@ namespace MyAppointer.Controllers
             return View();
         }
 
+
+        public ActionResult DatePicker()
+        {
+
+
+            return View();
+        }
+
         //
         // GET: /JobTypes/Create
 

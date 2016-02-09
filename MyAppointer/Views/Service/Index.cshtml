@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Personal.cshtml";
 }
-     <div style="margin-top:17px;">
-         @Html.ActionLink("NEW", "Create", "Service", null, new { @class = "btn btn-primary" })
-         <input class="btn btn-primary " style="width:70px;"value="Delete" onclick="deleteRow()" />
+<div style="margin-top:17px;">
+    @Html.ActionLink("NEW", "Create", "Service", null, new { @class = "btn btn-primary" })
+    <input class="btn btn-primary " style="width:70px;" value="Delete" onclick="deleteRow()" />
 
-     </div>
-    
-    <div class=" row" style="width: 600px; font-size: 20px;">
+</div>
+
+<div class=" row" style="width: 600px; font-size: 20px;">
     <div class="panel panel-primary filterable">
         <div class="panel-heading">
             <h3 class="panel-title">Users</h3>
@@ -19,11 +19,11 @@
             </div>
         </div>
 
-        
+
         <table class="table" style="width:600px ;font-size:20px;">
             <thead>
                 <tr class="filters">
-                    
+
                     <th></th>
                     <th><input type="text" class="form-control" placeholder="Description" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Duration" disabled></th>
@@ -32,14 +32,14 @@
                 </tr>
             </thead>
             <tbody>
-               
+
                 @foreach (var item in Model)
                 {
                     <tr>
-                        
+
                         <td style="padding-left: 2%; padding-right: 2%;">
                             <input type='checkbox' id='myCheckbox' name='ID' value='@item.Id' />
-                        </td> 
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>

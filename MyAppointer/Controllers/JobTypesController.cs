@@ -15,7 +15,7 @@ namespace MyAppointer.Controllers
 
         //
         // GET: /JobTypes/
-
+        //
         public ActionResult Index()
         {
             return View(db.JobTypes.ToList());
@@ -49,6 +49,22 @@ namespace MyAppointer.Controllers
             return View();
         }
 
+        //public ActionResult DatePicker(DPicker dp)
+        //{
+
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.JobTypes.Add(dp);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View();
+
+            
+        //}
+
         //
         // GET: /JobTypes/Create
 
@@ -66,10 +82,6 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(JobTypes jobtypes)
         {
-
-
-
-
             if (ModelState.IsValid)
             {
                 db.JobTypes.Add(jobtypes);

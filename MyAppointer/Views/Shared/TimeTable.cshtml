@@ -1,4 +1,6 @@
-﻿
+﻿@model MyAppointer.Models.TimeTable
+
+@Html.LabelFor(model => model.days.ElementAt(1).Day )
     <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
        <thead>
            <tr style="border: 1px solid black;">

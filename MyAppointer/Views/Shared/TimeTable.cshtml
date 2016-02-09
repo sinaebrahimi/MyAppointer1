@@ -1,13 +1,6 @@
 ﻿@model MyAppointer.Models.TimeTable
 @{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"]; }
-@{ string[] weekDays = { "شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه" }; }
-@{ string Times="";
-    for(int i=0;i< obj.times.Count; i++)
-    {
-        Times += obj.times.ElementAt(i).StartTime + "-" + obj.times.ElementAt(i).EndTime + ",";
-    }
-     }
-<input id="dayTimes" type="text" value="@Times" />    
+@{ string[] weekDays = { "شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه" }; } 
 
 <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
        <thead>
@@ -52,8 +45,8 @@
                             </div>
                         </td>
                     </tr>
-                                        }
+                    }
 
-                                    }
+                }
         </tbody>
     </table>

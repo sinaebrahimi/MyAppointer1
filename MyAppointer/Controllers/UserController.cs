@@ -103,14 +103,13 @@ namespace MyAppointer.Controllers
                    {
                        Session["LogedUserID"] = v.Id.ToString();
                        Session["LogedUserFullname"] = v.FullName.ToString();
-<<<<<<< HEAD
-=======
+
                        HttpCookie aCookie = new HttpCookie("userInfo");
                        aCookie.Values["userName"] = u.Email;
                        aCookie.Values["lastVisit"] = DateTime.Now.ToString();
                        aCookie.Expires = DateTime.Now.AddDays(1);
                        Response.Cookies.Add(aCookie);
->>>>>>> 149f71b76a46ebad26af201020a7010c01eb3300
+
                        return RedirectToAction("AfterLogin", "User");
                    }
                    else
@@ -134,7 +133,6 @@ namespace MyAppointer.Controllers
               }
          }
 
-<<<<<<< HEAD
         //LogOff
          
         [HttpGet]
@@ -142,26 +140,7 @@ namespace MyAppointer.Controllers
          {
             Session.Clear();
             return RedirectToAction("Index", "Home");//sths
-=======
-         
-        [HttpGet]
-         public ActionResult LogOff(){
-
-         //{
-         //    Request.Cookies.Remove("UserId");
-         //    FormsAuthentication.SignOut();
-         //    return RedirectToAction("Login", "Login");
-
-             Session["LogedUserID"] = null;
-             Session["LogedUserFullname"] = null;
-             if (Request.Cookies["UserInfo"]["userName"] != null)
-             {
-                 Request.Cookies["UserInfo"]["userName"]=null;
-             }
-             return RedirectToAction("Index", "Home");//sths
-
->>>>>>> 149f71b76a46ebad26af201020a7010c01eb3300
-         }
+        }
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

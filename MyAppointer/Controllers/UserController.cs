@@ -112,10 +112,12 @@ namespace MyAppointer.Controllers
                    }
                    else
                    {
-                       return RedirectToAction("Create", "User");
+                       ModelState.AddModelError("", "Email Or Password is Incorrect.");
                    }
                }
-        
+          return View();
+        //}
+
          }
          public ActionResult AfterLogin()
          {
@@ -125,13 +127,18 @@ namespace MyAppointer.Controllers
              }
              else
              {
-                 return RedirectToAction("Index");
+                 return RedirectToAction("Login");
               }
          }
 
          
         [HttpGet]
          public ActionResult LogOff(){
+
+         //{
+         //    Request.Cookies.Remove("UserId");
+         //    FormsAuthentication.SignOut();
+         //    return RedirectToAction("Login", "Login");
 
              Session["LogedUserID"] = null;
              Session["LogedUserFullname"] = null;
@@ -142,9 +149,6 @@ namespace MyAppointer.Controllers
              return RedirectToAction("Index", "Home");//sths
 
          }
-
-
-
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
@@ -167,8 +171,6 @@ namespace MyAppointer.Controllers
         }
         #endregion
 
-
-
         public ActionResult SelectCategory()
         {
 
@@ -185,28 +187,44 @@ namespace MyAppointer.Controllers
 
         }
 
+        //
+        // GET: /User/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        [HttpGet]
+        public ActionResult Edit(int? id)
         {
-            Users users = db.Users.Find(id);
-            if (users == null)
+            Users user = db.Users.Find(id);
+            if (user == null)
             {
-                return HttpNotFound();
+               // return HttpNotFound();
             }
-            return View(users);
+            return View(user);
         }
 
+        // POST: /User/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Users users)
+        public ActionResult Edit(Users user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(users).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
+                //db.Entry(user).State = EntityState.Modified;
+                //db.Entry(user.Email).State = (model)
+                //db.Entry(user.Password).State = EntityState.Modified;
+               // db.Entry(user.Phone).State = EntityState.Modified;
+               // db.Entry(user.FullName).State = EntityState.Modified;
+               // db.Entry(user.Password).State = EntityState.Modified;
+               // db.Entry(user.About).State = EntityState.Modified;
+                //db.Entry(user.City).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //if (v != null)
+               // {
+                    ViewBag.Message = "Changes Successfully Edited";
+                //}
+                    return RedirectToAction("AfterLogin", "User");
             }
-            return View(users);
+            return View(user);
         }
 
         //

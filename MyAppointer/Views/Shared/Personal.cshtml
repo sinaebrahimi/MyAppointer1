@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model MyAppointer.Models.Users
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,6 +21,8 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+@if (Session["LogedUserID"] != null)
+{
     <nav class="navbar" style="margin-left:5px;">
         <ul id="menu">
             <li>@Html.ActionLink("Acount", "Acount", "Home")</li>
@@ -28,19 +31,21 @@
             <li>@Html.ActionLink("Help", "Help", "Home")</li>
 
         </ul>
-
         <ul class="nav navbar-nav" style="float:right;margin-right:70px;font-size:20px;">
             <li class="dropdown">
                 <!--put username-->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Username<span class="glyphicon glyphicon-user pull-right"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Session["LogedUserFullname"].ToString()<span class="glyphicon glyphicon-user pull-right"></span></a>
+                
                 <ul class="dropdown-menu">
-                    <li><a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                    <li>@Html.ActionLink("Edit My Profile", "Edit", "User", new { id = Session["LogedUserID"] }, null)<span class="glyphicon glyphicon-cog pull-righ"></span></li>
                     <li class="divider"></li>
-                    <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    <li>@Html.ActionLink("Sign out", "LogOff", "User", routeValues: null, htmlAttributes: new { id = "logoutLink" })<span class="glyphicon glyphicon-log-out pull-right"></span></li>
                 </ul>
+                  
             </li>
         </ul>
     </nav>
+}
     <!-- topbar ends -->
     <div class="ch-container">
         <div class="row">
@@ -78,6 +83,7 @@
                 @RenderBody()
             </div>
             
+
             </div>
             <!--/span-->
             <section class="content-wrapper main-content clear-fix" style="min-height:800px;">
@@ -97,7 +103,7 @@
                 </div><!-- footer-bottom -->
             </footer>
         </div><!--/.fluid-container-->
-        <!-- external javascript -->
+     </div><!-- external javascript -->
 
         <script src="~/Scripts/chosen.jquery.min.js"></script>
         <script src="~/Scripts/jquery.colorbox-min.js"></script>

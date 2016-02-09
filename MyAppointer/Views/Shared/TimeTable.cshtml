@@ -1,0 +1,76 @@
+﻿@model MyAppointer.Models.TimeTable
+
+@Html.LabelFor(model => model.days.ElementAt(1).Day )
+    <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
+       <thead>
+           <tr style="border: 1px solid black;">
+               <th>روز هفته</th>
+               <th>ساعت</th>
+           </tr>
+       </thead> 
+        <tbody>
+            <tr class="disabled">
+                <td>شنبه</td>
+                <td class="status">
+                    <div class="progress times">
+                        
+                    </div>
+                </td>
+            </tr>
+            <tr class="disabled">
+                <td>یکشنبه</td>
+                <td class="status">
+                    <div class="progress times">
+
+                    </div>
+                </td>
+              </tr>
+            <tr class="disabled">
+                <td>دوشنبه</td>
+                <td class="status">
+                    <div class="progress times">
+
+                    </div>
+                </td>
+            </tr>
+            <tr class="disabled">
+                <td>سه شنبه</td>
+                <td class="status">
+                    <div class="progress times">
+
+                    </div>
+                </td>
+            </tr>
+            <tr class="disabled">
+                <td>چهارشنبه</td>
+                <td class="status">
+                    <div class="progress times">
+
+                    </div>
+                </td>
+            </tr>
+            <tr class="disabled">
+                <td>پنج شنبه</td>
+                <td class="status">
+                    <div class="progress times">
+
+                    </div>
+                </td>
+            </tr>
+            <tr class="disabled">
+                <td>جمعه</td>
+                <td class="status">
+                    <div class="progress times">
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+                
+
+
+    </table>
+
+
+
+

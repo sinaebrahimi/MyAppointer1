@@ -26,6 +26,6 @@
     <input id="daysNumber" type="text" value="@ViewBag.day" />
     <input id="dayTimes" type="text" value="@ViewBag.Times" />
 <body>
-    @Html.Partial("~/Views/Shared/TimeTable.cshtml", (MyAppointer.Models.TimeTable)ViewBag.timeTable);
+    @Html.Partial("~/Views/Shared/TimeTable.cshtml", new MyAppointer.Models.TimeTable() , new ViewDataDictionary {{ "data", (MyAppointer.Models.TimeTable)ViewBag.timeTable }});
 </body>
 </html>

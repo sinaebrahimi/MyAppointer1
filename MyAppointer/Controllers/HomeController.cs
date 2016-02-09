@@ -50,17 +50,18 @@ namespace MyAppointer.Controllers
             WorkingTimes workingTime = db.WorkingTimes.Where(model => model.JobOwnerId.Equals(jobowner.Id)).FirstOrDefault();
             var weeklyworkingdays = db.WeeklyWorkingDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
 
-            List<WeeklyWorkingDays> days = new List<WeeklyWorkingDays>();
+            List<int> days = new List<int>();
 
             foreach (WeeklyWorkingDays wwd in weeklyworkingdays)
             {
                 ViewBag.day += (wwd.Day+1).ToString();
-                days.Add(wwd);
+                days.Add(wwd.Day);
+                //timeTable.days.Add(wwd.Day);
                 //ViewBag.Message += "  " + wwd.Day; 
             }
-            timeTable.days = days;
-
-            ViewBag.days = days;
+            // timeTable.days = days;
+            timeTable.days=days;
+            //ViewBag.days = days;
 
             var weeklyworkingTimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             List<WeeklyWorkingTimes> times = new List<WeeklyWorkingTimes>();

@@ -7,7 +7,7 @@ namespace MyAppointer.Models
 {
     public class TimeTable
     {
-        public List<WeeklyWorkingDays> days { get; set; }
+        public List<int> days { get; set; }
         public List<WeeklyWorkingTimes> times { get; set; }
     }
 }

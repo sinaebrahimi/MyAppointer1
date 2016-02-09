@@ -1,6 +1,6 @@
 ﻿@model MyAppointer.Models.TimeTable
-
-@Html.LabelFor(model => model.days.ElementAt(1).Day )
+@{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"]; }
+@{ string[] weekDays = { "شنبه", "یکشنبه" ,"دوشنبه", "سه شنبه","چهارشنبه","پنج شنبه","جمعه"}; }
     <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
        <thead>
            <tr style="border: 1px solid black;">
@@ -9,62 +9,28 @@
            </tr>
        </thead> 
         <tbody>
-            <tr class="disabled">
-                <td>شنبه</td>
-                <td class="status">
-                    <div class="progress times">
-                        
-                    </div>
-                </td>
-            </tr>
-            <tr class="disabled">
-                <td>یکشنبه</td>
-                <td class="status">
-                    <div class="progress times">
+            @for (int i = 0; i < 7; i++)
+            {
+               if (obj.days.IndexOf(i) == -1)
+                {
+                <tr class="disabled">
+                    <td>@weekDays[i]</td>
+                    <td></td>
+                </tr>
 
-                    </div>
-                </td>
-              </tr>
-            <tr class="disabled">
-                <td>دوشنبه</td>
-                <td class="status">
-                    <div class="progress times">
+                }
+                else {
+                    <tr class="">
+                        <td>@weekDays[i]</td>
+                        <td>
+                            <div class="progress times">
 
-                    </div>
-                </td>
-            </tr>
-            <tr class="disabled">
-                <td>سه شنبه</td>
-                <td class="status">
-                    <div class="progress times">
+                            </div>
+                        </td>
+                    </tr>
+                }
 
-                    </div>
-                </td>
-            </tr>
-            <tr class="disabled">
-                <td>چهارشنبه</td>
-                <td class="status">
-                    <div class="progress times">
-
-                    </div>
-                </td>
-            </tr>
-            <tr class="disabled">
-                <td>پنج شنبه</td>
-                <td class="status">
-                    <div class="progress times">
-
-                    </div>
-                </td>
-            </tr>
-            <tr class="disabled">
-                <td>جمعه</td>
-                <td class="status">
-                    <div class="progress times">
-
-                    </div>
-                </td>
-            </tr>
+            }
         </tbody>
                 
 

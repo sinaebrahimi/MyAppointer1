@@ -201,6 +201,7 @@
     <Compile Include="Models\Appointments.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DPicker.cs" />
     <Compile Include="Models\JobOwners.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>

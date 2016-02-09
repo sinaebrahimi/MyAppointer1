@@ -38,6 +38,16 @@ namespace MyAppointer.Controllers
             Users user = db.Users.Find(JobOwnerId);
             Jobs job = db.Jobs.Where(model => model.FirstJobOwner.Equals(JobOwnerId)).FirstOrDefault();
             JobOwners jobowner = db.JobOwners.Where(model => model.JobId.Equals(job.Id)).FirstOrDefault();
+
+            timeTable.jobOwner = jobowner;
+            if(Session["LogedUserID"] != null)
+            {
+                timeTable.userId = Session["LogedUserID"].ToString();
+            } else {
+                timeTable.userId = "";
+            }
+            
+
             var services = db.Services.Where(model => model.JobOwnerId.Equals(jobowner.Id));
 
             foreach (Services service in services)

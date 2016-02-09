@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -189,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -229,6 +231,7 @@
     <Compile Include="Models\Services.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TimeTable.cs" />
     <Compile Include="Models\Users.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -337,6 +340,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\TimeTable.css" />
+    <Content Include="Content\week-picker-view.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\MyAppointer.edmx">
@@ -382,6 +387,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\TimeTable.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -401,7 +407,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PersianDatePicker.js" />
     <Content Include="Scripts\PersianDatePicker.min.js" />
-    <Content Include="Web.config" />
+   <Content Include="Scripts\site.js" />
+
+    <Content Include="Scripts\week-picker.js" />
+     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -460,6 +469,11 @@
     <Content Include="Views\Shared\Personal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
     <Content Include="Views\JobTypes\DateTest.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Service\Create.cshtml" />
+    <Content Include="Views\Home\info.cshtml" />
+    <Content Include="Views\Shared\TimeTable.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

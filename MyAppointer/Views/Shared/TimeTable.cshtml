@@ -1,0 +1,42 @@
+﻿@model MyAppointer.Models.TimeTable
+@{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"]; }
+@{ string[] weekDays = { "شنبه", "یکشنبه" ,"دوشنبه", "سه شنبه","چهارشنبه","پنج شنبه","جمعه"}; }
+    <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
+       <thead>
+           <tr style="border: 1px solid black;">
+               <th>روز هفته</th>
+               <th>ساعت</th>
+           </tr>
+       </thead> 
+        <tbody>
+            @for (int i = 0; i < 7; i++)
+            {
+               if (obj.days.IndexOf(i) == -1)
+                {
+                <tr class="disabled">
+                    <td>@weekDays[i]</td>
+                    <td></td>
+                </tr>
+
+                }
+                else {
+                    <tr class="">
+                        <td>@weekDays[i]</td>
+                        <td>
+                            <div class="progress times">
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+                
+
+
+    </table>
+
+
+
+

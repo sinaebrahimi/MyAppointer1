@@ -114,12 +114,6 @@ namespace MyAppointer.Controllers
                    {
                        Session["LogedUserID"] = v.Id.ToString();
                        Session["LogedUserFullname"] = v.FullName.ToString();
-                       ViewData["id"]= v.Id;
-                       //HttpCookie aCookie = new HttpCookie("userInfo");
-                       //aCookie.Values["Id"] = u.Id.ToString();
-                       //aCookie.Values["lastVisit"] = DateTime.Now.ToString();
-                       //aCookie.Expires = DateTime.Now.AddDays(1);
-                       //Response.Cookies.Add(aCookie);
                        return RedirectToAction("AfterLogin", "User");
                    }
                    else
@@ -142,61 +136,13 @@ namespace MyAppointer.Controllers
               }
          }
 
-        // GET: /Account/Login
-
-        //[AllowAnonymous]
-        //public ActionResult Login(string returnUrl)
-        //{
-        //    ViewBag.ReturnUrl = returnUrl;
-        //   return View();
-        //}
-
-        //
-        // POST: /Account/Login
-
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Login(Users user, string returnUrl)
-        //{
-        //  var v = db.Users.Where(model => model.Email.Equals(user.Email)).FirstOrDefault();// model.Password.Equals(u.Password)
-        //    if (v != null)
-        //    {
-        //        return RedirectToLocal(returnUrl);
-        //   }
-
-            // If we got this far, something failed, redisplay form
-        //    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-        //    return View(user);
-        //}
-        //#region Helpers
-        //private ActionResult RedirectToLocal(string returnUrl)
-        //{
-        //    if (Url.IsLocalUrl(returnUrl))
-        //    {
-        //        return Redirect(returnUrl);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-            
-        //}
-
-        //#endregion
-        //
-        // POST: /Account/LogOff
-         //login
+        //LogOff
          
         [HttpGet]
-         public ActionResult LogOff(){
-         //{
-         //    Request.Cookies.Remove("UserId");
-         //    FormsAuthentication.SignOut();
-         //    return RedirectToAction("Login", "Login");
-             Session["LogedUserID"] = null;
-             Session["LogedUserFullname"] = null;
-             return RedirectToAction("Index", "Home");//sths
+         public ActionResult LogOff()
+         {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");//sths
          }
 
         #region Helpers
@@ -257,20 +203,8 @@ namespace MyAppointer.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
-                //db.Entry(user).State = EntityState.Modified;
-                //db.Entry(user.Email).State = (model)
-                //db.Entry(user.Password).State = EntityState.Modified;
-               // db.Entry(user.Phone).State = EntityState.Modified;
-               // db.Entry(user.FullName).State = EntityState.Modified;
-               // db.Entry(user.Password).State = EntityState.Modified;
-               // db.Entry(user.About).State = EntityState.Modified;
-                //db.Entry(user.City).State = EntityState.Modified;
                 db.SaveChanges();
-                //if (v != null)
-               // {
-                    ViewBag.Message = "Changes Successfully Edited";
-                //}
-                    return RedirectToAction("AfterLogin", "User");
+                return RedirectToAction("AfterLogin", "User");
             }
             return View(user);
         }

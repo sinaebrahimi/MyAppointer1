@@ -190,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
+    <Compile Include="Controllers\OffDaysController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CreateOffDays.css" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap-tour.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -388,6 +390,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\CreateOffDays.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\TimeTable.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -475,6 +478,12 @@
     <Content Include="Views\Home\info.cshtml" />
     <Content Include="Views\Shared\TimeTable.cshtml" />
     <Content Include="Views\JobTypes\DatePicker.cshtml" />
+    <Content Include="Views\OffDays\Index.cshtml" />
+    <Content Include="Views\OffDays\Details.cshtml" />
+    <Content Include="Views\OffDays\Create.cshtml" />
+    <Content Include="Views\OffDays\Edit.cshtml" />
+    <Content Include="Views\OffDays\Delete.cshtml" />
+    <Content Include="Views\Shared\_DatePicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

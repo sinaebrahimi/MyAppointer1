@@ -1,0 +1,29 @@
+﻿@model MyAppointer.Models.OffDays
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>OffDays</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WorkingTimes.Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WorkingTimes.Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OffDay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OffDay)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

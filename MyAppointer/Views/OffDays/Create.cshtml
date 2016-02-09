@@ -1,0 +1,80 @@
+﻿@model MyAppointer.Models.OffDays
+@{
+    ViewBag.Title = "Create";
+}
+
+@section JavaScript
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.core.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/calendar.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-ar.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-fa.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ng_all.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/components/timepicker.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/CreateOffDays.js")"></script>
+}
+
+@section CSS
+{
+    <link href="@Url.Content("~/Content/css/jquery-ui-1.8.14.css")" rel="stylesheet" type="text/css" />
+
+
+<link href="@Url.Content("~/Content/CreateOffDays.css")" rel="stylesheet" type="text/css" />
+
+}
+
+    <h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>OffDays</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.WorkingTimesId, "WorkingTimes")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("WorkingTimesId", String.Empty)
+                @Html.ValidationMessageFor(model => model.WorkingTimesId)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OffDay)
+            </div>
+            <div class="editor-field">
+
+                @*@Html.Partial("~/Views/Shared/_DatePicker.cshtml", new MyAppointer.Models.DPicker(), new ViewDataDictionary { { "data", (MyAppointer.Models.DPicker)ViewBag.dpicker } })*@
+
+                @*<input type="text" id="datepicker" name="datepicker" />*@
+                <input type="text" id="alternate" size="30" />
+
+                @Html.TextBoxFor(model => model.OffDay, new { id = "datepicker", name = "OffDay" })
+
+                @*@Html.ValidationMessageFor(model => model.OffDay)*@
+            </div>
+
+
+
+            <br />
+    
+
+                <input type="submit" value="Create" />
+            
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

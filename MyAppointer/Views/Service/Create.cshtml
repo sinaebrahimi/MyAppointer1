@@ -1,0 +1,51 @@
+﻿@model MyAppointer.Models.Services
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Personal.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Service"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset style="margin-top:20px;">
+        <legend>Services</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Duration)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Duration)
+            @Html.ValidationMessageFor(model => model.Duration)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <p>
+            <input class="btn btn-default" type="submit" value="Create" />
+        </p>
+    </fieldset>
+      
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

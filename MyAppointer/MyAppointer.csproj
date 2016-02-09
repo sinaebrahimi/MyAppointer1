@@ -190,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -406,8 +407,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PersianDatePicker.js" />
     <Content Include="Scripts\PersianDatePicker.min.js" />
+   <Content Include="Scripts\site.js" />
+
     <Content Include="Scripts\week-picker.js" />
-    <Content Include="Web.config" />
+     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -466,8 +469,11 @@
     <Content Include="Views\Shared\Personal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
     <Content Include="Views\JobTypes\DateTest.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Service\Create.cshtml" />
     <Content Include="Views\Home\info.cshtml" />
     <Content Include="Views\Shared\TimeTable.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

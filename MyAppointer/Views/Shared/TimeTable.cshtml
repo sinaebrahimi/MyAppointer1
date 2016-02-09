@@ -1,7 +1,15 @@
 ﻿@model MyAppointer.Models.TimeTable
 @{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"]; }
-@{ string[] weekDays = { "شنبه", "یکشنبه" ,"دوشنبه", "سه شنبه","چهارشنبه","پنج شنبه","جمعه"}; }
-    <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
+@{ string[] weekDays = { "شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه" }; }
+@{ string Times="";
+    for(int i=0;i< obj.times.Count; i++)
+    {
+        Times += obj.times.ElementAt(i).StartTime + "-" + obj.times.ElementAt(i).EndTime + ",";
+    }
+     }
+<input id="dayTimes" type="text" value="@Times" />    
+
+<table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
        <thead>
            <tr style="border: 1px solid black;">
                <th>روز هفته</th>
@@ -11,7 +19,7 @@
         <tbody>
             @for (int i = 0; i < 7; i++)
             {
-               if (obj.days.IndexOf(i) == -1)
+                if (obj.days.IndexOf(i) == -1)
                 {
                 <tr class="disabled">
                     <td>@weekDays[i]</td>
@@ -24,19 +32,28 @@
                         <td>@weekDays[i]</td>
                         <td>
                             <div class="progress times">
+                                @{
+                                    float startTime, endtime;
+                                    float percent, right;
+                                    float LastStartTime = 420;
+                                    for (int j = 0; j < obj.times.Count; j++)
+                                    {
 
+                                        startTime = obj.times.ElementAt(j).StartTime;
+                                        endtime = obj.times.ElementAt(j).EndTime;
+                                        percent = 100 * ((endtime - startTime) / 840);
+                                        right = 100 * ((startTime - LastStartTime) / 840);
+                                        LastStartTime = endtime;
+                                        @Html.Raw("<div class='progress-bar progress-bar-success' style='width: " + @percent+ "%;right:" + @right + "%'></div>");
+                                 
+                                    }
+
+                                }
                             </div>
                         </td>
                     </tr>
-                }
+                                        }
 
-            }
+                                    }
         </tbody>
-                
-
-
     </table>
-
-
-
-

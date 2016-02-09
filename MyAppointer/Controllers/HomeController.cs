@@ -54,21 +54,17 @@ namespace MyAppointer.Controllers
 
             foreach (WeeklyWorkingDays wwd in weeklyworkingdays)
             {
-                ViewBag.day += (wwd.Day+1).ToString();
                 days.Add(wwd.Day);
-                //timeTable.days.Add(wwd.Day);
-                //ViewBag.Message += "  " + wwd.Day; 
             }
-            // timeTable.days = days;
+            
             timeTable.days=days;
-            //ViewBag.days = days;
+            
 
             var weeklyworkingTimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             List<WeeklyWorkingTimes> times = new List<WeeklyWorkingTimes>();
             foreach (WeeklyWorkingTimes wwt in weeklyworkingTimes)
             {
                 times.Add(wwt);
-                ViewBag.Times += wwt.StartTime+"-" + wwt.EndTime + ",";
             }
             timeTable.times = times;
 

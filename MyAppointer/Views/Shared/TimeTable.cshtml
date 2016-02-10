@@ -1,8 +1,11 @@
 ﻿@model MyAppointer.Models.TimeTable
 @{ MyAppointer.Models.Appointments appointment = new MyAppointer.Models.Appointments();  }
-@{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"]; }
+@{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"];
+    var i = 0; }
 @{ string[] weekDays = { "شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه" }; } 
 
+<input type="text" id="datepicker"/>
+<input type="text" id="alternate" />
 <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table table-hover table-bordered">
        <thead>
            <tr style="border: 1px solid black;">
@@ -11,19 +14,18 @@
            </tr>
        </thead> 
         <tbody>
-            @for (int i = 0; i < 7; i++)
-            {
-                if (obj.days.IndexOf(i) == -1)
+
+                @if (obj.days.IndexOf(i) == -1)
                 {
                 <tr class="disabled">
-                    <td class="text-center">@weekDays[i]</td>
+                    <td class="text-center day-name" ></td>
                     <td></td>
                 </tr>
 
                 }
                 else {
                     <tr class="" data-toggle="modal" data-target="#myModal" data-date="@Html.Raw(i.ToString())">
-                        <td class="text-center">@weekDays[i]</td>
+                        <td class="text-center day-name"></td>
                         <td>
                             <div class="progress times">
                                 @{
@@ -47,20 +49,20 @@
                             <div class="progress appointments">
 
                                 @{
-                                    for (int j = 0; j < obj.appointments.Count; j++)
+                                    @*for (int j = 0; j < obj.appointments.Count; j++)
                                     {
                                         startTime = obj.appointments.ElementAt(j).StartTime;
                                         endtime = obj.appointments.ElementAt(j).EndTime;
                                         percent = 100 * ((endtime - startTime) / 840);
                                         right = 100 * ((startTime -420) / 840);
                                         @Html.Raw("<div class='progress-bar progress-bar-warning' style='width: " + @percent + "%;right:" + @right + "%'></div>");
-                                    }
+                                    }*@
                                 }
                             </div>
                         </td>
                     </tr>
-                                        }
-                                    }
+              }
+                                    
         </tbody>
     </table>
 @{ 

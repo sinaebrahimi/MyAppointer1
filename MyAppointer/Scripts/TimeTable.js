@@ -1,12 +1,51 @@
 ﻿$(document).ready(function () {
-    $('#myModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var date = button.data('date') // Extract info from data-* attributes
-        alert(date);
-        var modal = $(this)
-        modal.find('.modal-title').text('New Reservation for' + date)
-        modal.find('.modal-body #BookDate').val(date)
-    })
+    $("#datepicker").datepicker({
+        dateFormat: 'yymmdd',
+        altField: '#alternate',
+        altFormat: 'DD'
+    }).change(function () {
+        $(".day-name").html($("#alternate").val());
+        $("#BookDate").val($(this).val());
+
+        $.ajax({
+            type: "GET",
+            url: "../api/Appointment/"+$(this).val()+"/4",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                var obj = jQuery.parseJSON(msg);
+
+                var startTime, endtime;
+                var percent, right;
+                var LastStartTime = 420;
+                $(".progress.appointments").html("");
+
+                $.each(obj, function (i, object) {
+                    $.each(object, function (key, val) {
+                        if (key == "startTime") {
+                            startTime = val;
+                        } else if (key == "endTime") {
+                            endtime = val;
+                        }
+                    });
+
+                    percent = 100 * ((endtime - startTime) / 840);
+                    right = 100 * ((startTime - 420) / 840);
+
+                    $(".progress.appointments").append("<div class='progress-bar progress-bar-warning' style='width: " + percent + "%;right:" + right + "%'></div>"
+)
+
+                    
+                });
+
+
+               
+               
+            }
+        });
+
+
+    });
 
 
     $.fn.serializeObject = function () {

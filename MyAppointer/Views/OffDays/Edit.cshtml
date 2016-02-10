@@ -27,8 +27,12 @@
             @Html.LabelFor(model => model.OffDay)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.OffDay)
-            @Html.ValidationMessageFor(model => model.OffDay)
+            @*@Html.EditorFor(model => model.OffDay)
+            @Html.ValidationMessageFor(model => model.OffDay)*@
+
+            @Html.Partial("~/Views/Shared/_DatePicker.cshtml", new MyAppointer.Models.DPicker(), new ViewDataDictionary { { "data", (MyAppointer.Models.DPicker)ViewBag.dpicker } })
+
+
         </div>
 
         <p>

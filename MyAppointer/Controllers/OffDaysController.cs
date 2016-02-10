@@ -86,6 +86,9 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(OffDays offdays)
         {
+
+
+            ViewBag.dpicker = new DPicker();
             if (ModelState.IsValid)
             {
                 db.Entry(offdays).State = EntityState.Modified;

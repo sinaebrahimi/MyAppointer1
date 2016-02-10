@@ -1,86 +1,33 @@
 ﻿@model MyAppointer.Models.DPicker
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>DatePicker</title>
 
 
-    <link type="text/css" href="~/Content/css/jquery-ui-1.8.14.css" rel="stylesheet" />
+@section JavaScript
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.core.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/calendar.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-ar.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-fa.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ng_all.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/components/timepicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/CreateOffDays.js")"></script>
+}
 
-    <script type="text/javascript" src="~/Scripts/jquery-1.6.2.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.ui.core.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.ui.datepicker-cc.js"></script>
-    <script type="text/javascript" src="~/Scripts/calendar.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.ui.datepicker-cc-ar.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.ui.datepicker-cc-fa.js"></script>
-    <script type="text/javascript" src="~/Scripts/ng_all.js"></script>
-    <script type="text/javascript" src="~/Scripts/components/timepicker.js"></script>
-    <script type="text/javascript">
-        ng.ready(function () {
-
-
-            $(function () {
-
-                $("#datepicker").datepicker({
-                    dateFormat: 'yymmdd',
-                    altField: '#alternate',
-                    altFormat: 'DD، d MM yy'
-                });
-            });
- 
-
-        });
-    </script>
-    <style type="text/css">
-
-        p {
-            padding: 25px;
-            margin: 25px auto;
-            width: 450px;
-        }
-
-            p.ui-state-hover {
-                font-weight: normal;
-            }
-
-            p.ui-widget-header {
-                text-align: center;
-                font-weight: normal;
-            }
-
-        strong.ui-state-error {
-            display: block;
-            padding: 3px;
-            text-align: center;
-        }
-
-        /*.timeP {
-            padding: 25px;
-            margin: 2px auto;
-            width: 200px;
-        }*/
-    </style>
-</head>
-<body>
-
+@section CSS
+{
+    <link href="@Url.Content("~/Content/css/jquery-ui-1.8.14.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/CreateOffDays.css")" rel="stylesheet" type="text/css" />
+}
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-
         <fieldset>
-
             <div>
-
-                <p>
                     <input type="text" id="datepicker" name="datepicker" />
                     <input type="text" id="alternate" size="30" />
-                </p>
             </div>
         </fieldset>
     }
-</body>
-</html>

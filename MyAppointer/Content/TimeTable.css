@@ -10,9 +10,23 @@
     width:20% !important;
 }
 
+.table tr td .times.progress {
+    margin-top:7px;
+    margin-bottom:8px;
+}
+
 .table tr td .times.progress .progress-bar{
     float:right;
     position:relative;
+}
+
+
+.modal .modal-dialog .modal-header {
+    background-color: #31708F !important;
+    direction:rtl;
+}
+.modal .modal-dialog .modal-header .close {
+    float: left !important;
 }
 
 .disabled{

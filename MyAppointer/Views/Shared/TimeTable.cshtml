@@ -3,7 +3,7 @@
 @{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"]; }
 @{ string[] weekDays = { "شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه" }; } 
 
-<table style="border: 1px solid black; width: 100%" id="TimeTable" class="table">
+<table style="border: 1px solid black; width: 100%" id="TimeTable" class="table table-hover table-bordered">
        <thead>
            <tr style="border: 1px solid black;">
                <th>روز هفته</th>
@@ -16,16 +16,16 @@
                 if (obj.days.IndexOf(i) == -1)
                 {
                 <tr class="disabled">
-                    <td>@weekDays[i]</td>
+                    <td class="text-center">@weekDays[i]</td>
                     <td></td>
                 </tr>
 
                 }
                 else {
-                    <tr class="">
-                        <td>@weekDays[i]</td>
+                    <tr class="" data-toggle="modal" data-target="#myModal" data-date="@Html.Raw(i.ToString())">
+                        <td class="text-center">@weekDays[i]</td>
                         <td>
-                            <div class="progress times" data-toggle="modal" data-target="#myModal" data-date="@Html.Raw(i.ToString())">
+                            <div class="progress times">
                                 @{
                                     float startTime, endtime;
                                     float percent, right;
@@ -67,7 +67,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Select Time</h4>
       </div>
       <div class="modal-body">
         @using (Html.BeginForm("Home", "info", null, System.Web.Mvc.FormMethod.Post, new { @class = "reserve-form" }))

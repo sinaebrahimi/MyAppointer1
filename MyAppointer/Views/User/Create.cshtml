@@ -4,11 +4,6 @@
     ViewBag.Title = "Sign Up";
     
 }
-
-
-
-<p style="font-size:20px; color:red; margin-left:200px">@ViewBag.error</p>
-
 <div class="container" style=" width:1000px;">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4" style=" margin-left:200px;">
@@ -69,11 +64,10 @@
             @Html.ValidationMessageFor(model => model.About)
         </div>
 
-        
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Role)
         </div>
+
         <div class="editor-field">
             User @Html.RadioButtonFor(model => model.Role, "user")
             <br />
@@ -81,17 +75,11 @@
             @Html.ValidationMessageFor(model => model.Role)
         </div>
 
-
-
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
         </div>
     </div>

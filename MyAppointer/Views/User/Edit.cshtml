@@ -66,14 +66,16 @@
             @Html.EditorFor(model => model.City)
             @Html.ValidationMessageFor(model => model.City)
         </div>
+        <div style="display:none" class="editor-field">
+            @Html.EditorFor(model => model.Role)
+            @Html.ValidationMessageFor(model => model.Role)
+        </div>
 
         <p>
             <input type="submit" value="Save" />
         </p>
     </fieldset>
 }
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

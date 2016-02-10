@@ -190,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -228,6 +229,7 @@
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersianDatePicker.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\Services.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -407,10 +409,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PersianDatePicker.js" />
     <Content Include="Scripts\PersianDatePicker.min.js" />
-   <Content Include="Scripts\site.js" />
-
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\week-picker.js" />
-     <Content Include="Web.config" />
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -473,7 +474,8 @@
     <Content Include="Views\Service\Create.cshtml" />
     <Content Include="Views\Home\info.cshtml" />
     <Content Include="Views\Shared\TimeTable.cshtml" />
-
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,9 +50,11 @@
                     <div class="input-group col-md-3" style="float:right;margin-top:8px;">
                         <input type="text" class="  search-query form-control" placeholder="Search" />
                         <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button">
+                                @Html.ActionLink("search", "index", "Search", null, new { @class="btn btn-danger"  })
+
                                 <span class=" glyphicon glyphicon-search"></span>
-                            </button>
+                                
+                            
                         </span>
                     </div>
                 </div>

@@ -227,7 +227,6 @@
     <Compile Include="Models\OffDays.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PersianDatePicker.cs" />
     <Compile Include="Models\Services.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -460,8 +459,6 @@
     <Content Include="Views\Job\Edit.cshtml" />
     <Content Include="Views\Job\Delete.cshtml" />
     <Content Include="Views\Shared\Personal.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
-    <Content Include="Views\JobTypes\DateTest.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Service\Create.cshtml" />
     <Content Include="Views\Home\info.cshtml" />

@@ -1,0 +1,10 @@
+diff a/MyAppointer/Views/Shared/TimeTable.cshtml b/MyAppointer/Views/Shared/TimeTable.cshtml	(rejected hunks)
+@@ -25,7 +25,7 @@
+                     <tr class="">
+                         <td>@weekDays[i]</td>
+                         <td>
+-                            <div class="progress times">
++                            <div class="progress times" data-toggle="modal" data-target="#myModal" data-date="@Html.Raw(i.ToString())">
+                                 @{
+                                     float startTime, endtime;
+                                     float percent, right;

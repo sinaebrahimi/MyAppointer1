@@ -10,7 +10,7 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-
+using MyAppointer.Filters;
 using MyAppointer.Models;
 using System.Web.Services.Description;
 

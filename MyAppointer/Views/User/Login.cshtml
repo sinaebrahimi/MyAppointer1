@@ -1,4 +1,4 @@
-﻿@model MyAppointer.Models.Users
+﻿@model MyAppointer.Models.Login
 
 @{
     ViewBag.Title = "Login";
@@ -11,41 +11,38 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
-                        
-                @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
-                    {
-                         //this  is for create form tag
-                         //   @Html.AntiForgeryToken()          // this is for prevent CSRF attack
-                           // @Html.ValidationSummary(true)
-                           <img style="margin-left:100px;" src="~/Content/images/default_user_icon.png" />
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true)
-
-                            <fieldset>
-                                <legend>Log in Form</legend>
-                                <ol>
-                                    <li>
-                                        @Html.LabelFor(m => m.Email)
-                                        @Html.TextBoxFor(m => m.Email)
-                                        @Html.ValidationMessageFor(m => m.Email)
-                                    </li>
-                                    <li>
-                                        @Html.LabelFor(m => m.Password)
-                                        @Html.PasswordFor(m => m.Password)
-                                        @Html.ValidationMessageFor(m => m.Password)
-                                    </li>
-                                </ol>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in">
-                                    Sign in
-                                </button>
-                            </fieldset>
-                            <p>
-                                @Html.ActionLink("Create", "Create") if you don't have an account.
-                            </p>
-                        }
-                    </div>
-                </div>
-            </div>
+            @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+                //this  is for create form tag
+                //   @Html.AntiForgeryToken()          
+                // this is for prevent CSRF attack
+                // @Html.ValidationSummary(true)
+                <img style="margin-left:100px;" src="~/Content/images/default_user_icon.png" />
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>Log in Form</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email)
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password)
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </li>
+                </ol>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in">Sign in</button>
+                                    
+                                
+            </fieldset>
+                 <p>@Html.ActionLink("Create", "Create") if you don't have an account.</p>
+            }
+        </div>
+    </div>
+</div>
 
 
 

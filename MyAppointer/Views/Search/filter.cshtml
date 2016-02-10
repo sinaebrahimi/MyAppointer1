@@ -1,16 +1,19 @@
-﻿@model IQueryable<MyAppointer.Models.Services>
+﻿@model IEnumerable<MyAppointer.Models.Search>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/Personal.cshtml";
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-     <div style="margin-top:17px;">
-         @Html.ActionLink("NEW", "Create", "Service", null, new { @class = "btn btn-primary" })
-         <input class="btn btn-primary " style="width:70px;"value="Delete" onclick="deleteRow()" />
 
-     </div>
-    
-    <div class=" row" style="width: 600px; font-size: 20px;">
+<h2>Search</h2>
+
+<div style="margin-top:17px;">
+    @Html.ActionLink("NEW", "Create", "Service", null, new { @class = "btn btn-primary" })
+    <input class="btn btn-primary " style="width:70px;" value="Delete" onclick="deleteRow()" />
+
+</div>
+
+<div class=" row" style="width: 600px; font-size: 20px;">
     <div class="panel panel-primary filterable">
         <div class="panel-heading">
             <h3 class="panel-title">Users</h3>
@@ -19,11 +22,11 @@
             </div>
         </div>
 
-        
+
         <table class="table" style="width:600px ;font-size:20px;">
             <thead>
                 <tr class="filters">
-                    
+
                     <th></th>
                     <th><input type="text" class="form-control" placeholder="Description" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Duration" disabled></th>
@@ -32,23 +35,19 @@
                 </tr>
             </thead>
             <tbody>
-               
+
                 @foreach (var item in Model)
                 {
                     <tr>
+
                         
-                        <td style="padding-left: 2%; padding-right: 2%;">
-                            <input type='checkbox' id='myCheckbox' name='ID' value='@item.Id' />
-                        </td> 
                         <td>
-                            @Html.DisplayFor(modelItem => item.Description)
+                            @Html.DisplayFor(modelItem => item.city)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Duration)
+                            @Html.DisplayFor(modelItem => item.service_type)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
+                       
 
                     </tr>
                 }
@@ -56,4 +55,3 @@
         </table>
     </div>
 </div>
-

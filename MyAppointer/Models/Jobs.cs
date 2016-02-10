@@ -11,7 +11,7 @@ namespace MyAppointer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Jobs
     {
         public Jobs()
@@ -20,31 +20,15 @@ namespace MyAppointer.Models
         }
     
         public int Id { get; set; }
-
-        [Required]
-        [Display(Name = "Job Title")]
         public string Title { get; set; }
-
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Telephone Number")]
-        [Required]
-
-        [StringLength(11)]
-
-        //^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$
-        [RegularExpression(@"^0-?[0-9]{10}$", ErrorMessage = "Enter Your Mobile Phone Number like this: 02433334346")]
- 
         public string JobPhone { get; set; }
         public string About { get; set; }
         public string Address { get; set; }
-
-        [Display(Name = "Job Type")]
-        [Required]
         public int JobTypeId { get; set; }
         public int FirstJobOwner { get; set; }
     
         public virtual ICollection<JobOwners> JobOwners { get; set; }
-        public virtual JobTypes JobTypes { get; set; }
+       
         public virtual Users Users { get; set; }
     }
 }

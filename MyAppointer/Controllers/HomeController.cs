@@ -78,7 +78,16 @@ namespace MyAppointer.Controllers
             }
             timeTable.times = times;
 
+            List<Appointments> appointments_list = new List<Appointments>();
+            var appointments_query = db.Appointments.Where(model => model.JobOwnerId.Equals(jobowner.Id));
+            foreach (Appointments appointment in appointments_query)
+            {
+                appointments_list.Add(appointment);
+            }
+            timeTable.appointments = appointments_list;
+            
             ViewBag.timeTable = timeTable;
+
 
             var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             foreach (OffDays od in offdays)

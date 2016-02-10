@@ -65,13 +65,39 @@ namespace MyAppointer.Controllers
         // POST api/Appointment
         public HttpResponseMessage PostAppointments(Appointments appointments)
         {
+            int overlap_flag = 0;
+            HttpResponseMessage response = new HttpResponseMessage();
+
             if (ModelState.IsValid)
             {
-                db.Appointments.Add(appointments);
-                db.SaveChanges();
+                foreach(Appointments appointment in db.Appointments)
+                {
+                    if (appointment.BookDate == appointments.BookDate) {
+                        if ((appointment.StartTime <= appointments.StartTime) && (appointment.EndTime >= appointments.StartTime)) {
+                            overlap_flag = 1;
+                            break;
+                        }else if ((appointment.EndTime >= appointments.EndTime) && (appointment.StartTime <= appointments.EndTime))
+                        {
+                            overlap_flag = 1;
+                            break;
+                        }
+                    } 
+                }
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, appointments);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = appointments.Id }));
+                if (overlap_flag == 1)
+                {
+                    response = Request.CreateResponse(HttpStatusCode.OK, "overlap");
+                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = appointments.Id }));
+                }
+                else
+                {
+                    db.Appointments.Add(appointments);
+                    db.SaveChanges();
+
+                    response = Request.CreateResponse(HttpStatusCode.Created, appointments);
+                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = appointments.Id }));
+                }
+
                 return response;
             }
             else

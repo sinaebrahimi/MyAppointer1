@@ -2,7 +2,7 @@
 @{ MyAppointer.Models.Appointments appointment = new MyAppointer.Models.Appointments();  }
 @{ MyAppointer.Models.TimeTable obj = (MyAppointer.Models.TimeTable)ViewData["data"]; }
 @{ string[] weekDays = { "شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه" }; } 
-
+<script src="~/Scripts/bootstrap.min.js"></script>
 <table style="border: 1px solid black; width: 100%" id="TimeTable" class="table table-hover table-bordered">
        <thead>
            <tr style="border: 1px solid black;">
@@ -38,10 +38,23 @@
                                         percent = 100 * ((endtime - startTime) / 840);
                                         right = 100 * ((startTime - LastStartTime) / 840);
                                         LastStartTime = endtime;
-                                        @Html.Raw("<div class='progress-bar progress-bar-success' style='width: " + @percent + "%;right:" + @right + "%'></div>");
+                                        @Html.Raw("<div class='progress-bar progress-bar-success' style='width: " + @percent + "%;right:" + @right + "%' data-toggle='tooltip' data-placement='top' title='"+ Math.Floor(startTime/60).ToString() + ":"+ (startTime % 60).ToString() + "'></div>");
 
                                     }
 
+                                        }
+                            </div>
+                            <div class="progress appointments">
+
+                                @{
+                                    for (int j = 0; j < obj.appointments.Count; j++)
+                                    {
+                                        startTime = obj.appointments.ElementAt(j).StartTime;
+                                        endtime = obj.appointments.ElementAt(j).EndTime;
+                                        percent = 100 * ((endtime - startTime) / 840);
+                                        right = 100 * ((startTime -420) / 840);
+                                        @Html.Raw("<div class='progress-bar progress-bar-warning' style='width: " + @percent + "%;right:" + @right + "%'></div>");
+                                    }
                                 }
                             </div>
                         </td>

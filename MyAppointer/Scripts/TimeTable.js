@@ -26,7 +26,6 @@
     };
 
     $('#submit-appointment').click(function () {
-
         var data = JSON.stringify($('form.reserve-form').serializeObject());
         $.ajax({
             type: "POST",
@@ -35,12 +34,13 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
-                alert('In Ajax');
+                if(msg == "overlap") {
+                	alert('selected time have been reserved before');
+                }else{
+                	alert("new Appointment create successfully")
+                }
             }
         });
-
-
     });
-
 
 });

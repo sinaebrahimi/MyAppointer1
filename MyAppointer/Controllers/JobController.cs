@@ -18,8 +18,8 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
-            var jobs = db.Jobs.Include(j => j.JobTypes).Include(j => j.Users);
-            return View(jobs.ToList());
+            /*var jobs = db.Jobs.Include(j => j.JobTypes).Include(j => j.Users);*/
+            return View(/*jobs.ToList()*/);
         }
 
         //
@@ -34,10 +34,8 @@ namespace MyAppointer.Controllers
             }
             return View(jobs);
         }
-
-        //
-        // GET: /Job/Create
-
+        //get
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title");
@@ -50,21 +48,50 @@ namespace MyAppointer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Jobs jobs)
+        public ActionResult Create(BigViewModel bv)
         {
 
-            jobs.FirstJobOwner = Int32.Parse(Request.QueryString["FirstJobOwner"]);
+            //jobs.FirstJobOwner = Int32.Parse(Request.QueryString["FirstJobOwner"]);
+
+            //JobOwners jobowner = db.JobOwners.Where(model => model.JobId.Equals(jobs.Id)).FirstOrDefault();
+            //WorkingTimes workingTime = db.WorkingTimes.Where(model => model.JobOwnerId.Equals(jobowner.Id)).FirstOrDefault();
+           // var weeklyworkingdays = db.WeeklyWorkingDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
+            //var weeklyworkingtimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
+            //var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
 
             if (ModelState.IsValid)
             {
-                db.Jobs.Add(jobs);
-                db.SaveChanges();//save
+
+                
+
+                //db.OffDays.Add(offdays);
+                bv.Jobs.JobTypeId = 1;
+                
+                db.Jobs.Add(bv.Jobs);
+                db.SaveChanges();
+
+                db.JobOwners.Add(bv.JobOwners);
+                db.SaveChanges();
+                
+
+                db.JobTypes.Add(bv.JobTypes);
+                db.SaveChanges();
+
+                db.WorkingTimes.Add(bv.WorkingTimes);
+                db.SaveChanges();
+
+                db.WeeklyWorkingDays.Add(bv.WeeklyWorkingDays);
+                db.SaveChanges();
+
+                db.WeeklyWorkingTimes.Add(bv.WeeklyWorkingTimes);
+                db.SaveChanges();
+
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", jobs.JobTypeId);
-            ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email", jobs.FirstJobOwner);
-            return View(jobs);
+           // ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", bv.jobs.JobTypeId);
+           //ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email", bv.jobs.FirstJobOwner);
+            return View(bv.Jobs);
         }
 
         //

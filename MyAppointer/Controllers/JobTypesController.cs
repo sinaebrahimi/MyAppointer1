@@ -58,10 +58,6 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(JobTypes jobtypes)
         {
-
-
-
-
             if (ModelState.IsValid)
             {
                 db.JobTypes.Add(jobtypes);

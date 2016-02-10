@@ -12,21 +12,18 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using MyAppointer.Filters;
 using MyAppointer.Models;
+using System.Security.Cryptography;
 namespace MyAppointer.Controllers
 {
     public class UserController : Controller
     {
         private MyAppointerEntities db = new MyAppointerEntities();
 
-       
-
         public ActionResult Index()
         {
             return View(db.Users.ToList());
            
         }
-
-       
 
         public ActionResult Details(int id = 0)
         {
@@ -52,36 +49,31 @@ namespace MyAppointer.Controllers
             
             if (ModelState.IsValid)
             {
-                var v = db.Users.Where(model => model.Email.Equals(users.Email)).FirstOrDefault();
-                
-                if(v==null)
-                { db.Users.Add(users);
+                db.Users.Add(users);
                 db.SaveChanges();
-
-
                 if (users.Role == "jobowner")
                 {
-
                     return RedirectToAction("Create", "Job", new { FirstJobOwner = users.Id });
-
                 }
                 else
                 {
-
                     return RedirectToAction("Index", "Home");
                 }
             }
-                else
-                {
-                    ViewBag.error = "error:please enter another Email";
-                    return View(users);//jobs
-                }
-
-
-            }
             return View(users);//jobs
+        }
 
-                
+        [HttpPost]
+        public JsonResult doesUserNameExist(Users u)
+        {
+            var v = db.Users.Where(model => model.Email.Equals(u.Email)).FirstOrDefault();
+            return Json(v == null);
+        }
+        public JsonResult doesPhoneNumberExist(Users u)
+        {
+            var v = db.Users.Where(model => model.Phone.Equals(u.Phone)).FirstOrDefault();
+            return Json(v == null);
+    
         }
 
         //login
@@ -103,14 +95,11 @@ namespace MyAppointer.Controllers
                    {
                        Session["LogedUserID"] = v.Id.ToString();
                        Session["LogedUserFullname"] = v.FullName.ToString();
-<<<<<<< HEAD
-=======
                        HttpCookie aCookie = new HttpCookie("userInfo");
                        aCookie.Values["userName"] = u.Email;
                        aCookie.Values["lastVisit"] = DateTime.Now.ToString();
                        aCookie.Expires = DateTime.Now.AddDays(1);
                        Response.Cookies.Add(aCookie);
->>>>>>> 149f71b76a46ebad26af201020a7010c01eb3300
                        return RedirectToAction("AfterLogin", "User");
                    }
                    else
@@ -134,15 +123,7 @@ namespace MyAppointer.Controllers
               }
          }
 
-<<<<<<< HEAD
         //LogOff
-         
-        [HttpGet]
-         public ActionResult LogOff()
-         {
-            Session.Clear();
-            return RedirectToAction("Index", "Home");//sths
-=======
          
         [HttpGet]
          public ActionResult LogOff(){
@@ -159,8 +140,6 @@ namespace MyAppointer.Controllers
                  Request.Cookies["UserInfo"]["userName"]=null;
              }
              return RedirectToAction("Index", "Home");//sths
-
->>>>>>> 149f71b76a46ebad26af201020a7010c01eb3300
          }
 
         #region Helpers

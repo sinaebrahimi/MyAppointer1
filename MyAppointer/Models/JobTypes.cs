@@ -11,8 +11,6 @@ namespace MyAppointer.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
     
     public partial class JobTypes
     {
@@ -23,17 +21,7 @@ namespace MyAppointer.Models
     
         public int Id { get; set; }
         public string Title { get; set; }
-
-
-
-        public class PersianDatePicker
-        {
-
-            [UIHint("DatePicker")]
-            public DateTime DatePicker { get; set; }
-        }
-        //[UIHint("PersianDatePicker")]
-        //public DateTime DatePicker { set; get; }
+    
         public virtual ICollection<Jobs> Jobs { get; set; }
     }
 }

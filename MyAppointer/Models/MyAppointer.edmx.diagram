@@ -7,7 +7,7 @@
       <Diagram DiagramId="509f1b2b7a66438fb94fbd1ddd4fa779" Name="Diagram1">
         <EntityTypeShape EntityType="MyAppointerModel.Appointments" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MyAppointerModel.JobOwners" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyAppointerModel.Jobs" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyAppointerModel.Jobs" Width="1.5" PointX="3.625" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="MyAppointerModel.JobTypes" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MyAppointerModel.OffDays" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MyAppointerModel.Services" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />

@@ -9,140 +9,118 @@ using MyAppointer.Models;
 
 namespace MyAppointer.Controllers
 {
-    public class JobTypesController : Controller
+    public class OffDaysController : Controller
     {
         private MyAppointerEntities db = new MyAppointerEntities();
 
         //
-        // GET: /JobTypes/
-        //
+        // GET: /OffDays/
+
         public ActionResult Index()
         {
-            return View(db.JobTypes.ToList());
+            var offdays = db.OffDays.Include(o => o.WorkingTimes);
+            return View(offdays.ToList());
         }
 
         //
-        // GET: /JobTypes/Details/5
+        // GET: /OffDays/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            JobTypes jobtypes = db.JobTypes.Find(id);
-            if (jobtypes == null)
+            OffDays offdays = db.OffDays.Find(id);
+            if (offdays == null)
             {
                 return HttpNotFound();
             }
-            return View(jobtypes);
+            return View(offdays);
         }
-
-        public ActionResult DateTest()
-        {
-
-
-            return View();
-        }
-
-
-        public ActionResult DatePicker()
-        {
-
-
-            return View();
-        }
-
-        //public ActionResult DatePicker(DPicker dp)
-        //{
-
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.JobTypes.Add(dp);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View();
-
-            
-        //}
 
         //
-        // GET: /JobTypes/Create
+        // GET: /OffDays/Create
 
         public ActionResult Create()
         {
-
-
+            ViewBag.WorkingTimesId = new SelectList(db.WorkingTimes, "Id", "Id");
             return View();
         }
 
         //
-        // POST: /JobTypes/Create
+        // POST: /OffDays/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(JobTypes jobtypes)
+        public ActionResult Create(OffDays offdays)
         {
+
+
+            //offdays.OffDay = Int32.Parse(offdays.OffDay);
             if (ModelState.IsValid)
             {
-                db.JobTypes.Add(jobtypes);
+                db.OffDays.Add(offdays);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(jobtypes);
+            ViewBag.WorkingTimesId = new SelectList(db.WorkingTimes, "Id", "Id", offdays.WorkingTimesId);
+            return View(offdays);
         }
 
         //
-        // GET: /JobTypes/Edit/5
+        // GET: /OffDays/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            JobTypes jobtypes = db.JobTypes.Find(id);
-            if (jobtypes == null)
+            OffDays offdays = db.OffDays.Find(id);
+            if (offdays == null)
             {
                 return HttpNotFound();
             }
-            return View(jobtypes);
+            ViewBag.WorkingTimesId = new SelectList(db.WorkingTimes, "Id", "Id", offdays.WorkingTimesId);
+            return View(offdays);
         }
 
         //
-        // POST: /JobTypes/Edit/5
+        // POST: /OffDays/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(JobTypes jobtypes)
+        public ActionResult Edit(OffDays offdays)
         {
+
+
+            ViewBag.dpicker = new DPicker();
             if (ModelState.IsValid)
             {
-                db.Entry(jobtypes).State = EntityState.Modified;
+                db.Entry(offdays).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(jobtypes);
+            ViewBag.WorkingTimesId = new SelectList(db.WorkingTimes, "Id", "Id", offdays.WorkingTimesId);
+            return View(offdays);
         }
 
         //
-        // GET: /JobTypes/Delete/5
+        // GET: /OffDays/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            JobTypes jobtypes = db.JobTypes.Find(id);
-            if (jobtypes == null)
+            OffDays offdays = db.OffDays.Find(id);
+            if (offdays == null)
             {
                 return HttpNotFound();
             }
-            return View(jobtypes);
+            return View(offdays);
         }
 
         //
-        // POST: /JobTypes/Delete/5
+        // POST: /OffDays/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            JobTypes jobtypes = db.JobTypes.Find(id);
-            db.JobTypes.Remove(jobtypes);
+            OffDays offdays = db.OffDays.Find(id);
+            db.OffDays.Remove(offdays);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,7 +10,7 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using MyAppointer.Filters;
+
 using MyAppointer.Models;
 namespace MyAppointer.Controllers
 {
@@ -103,6 +103,7 @@ namespace MyAppointer.Controllers
                    {
                        Session["LogedUserID"] = v.Id.ToString();
                        Session["LogedUserFullname"] = v.FullName.ToString();
+
                        HttpCookie aCookie = new HttpCookie("userInfo");
                        aCookie.Values["userName"] = u.Email;
                        aCookie.Values["lastVisit"] = DateTime.Now.ToString();
@@ -132,25 +133,14 @@ namespace MyAppointer.Controllers
               }
          }
 
-
+        //LogOff
          
         [HttpGet]
-         public ActionResult LogOff(){
-
-         //{
-         //    Request.Cookies.Remove("UserId");
-         //    FormsAuthentication.SignOut();
-         //    return RedirectToAction("Login", "Login");
-
-             Session["LogedUserID"] = null;
-             Session["LogedUserFullname"] = null;
-             if (Request.Cookies["UserInfo"]["userName"] != null)
-             {
-                 Request.Cookies["UserInfo"]["userName"]=null;
-             }
-             return RedirectToAction("Index", "Home");//sths
-
-         }
+         public ActionResult LogOff()
+         {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");//sths
+        }
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

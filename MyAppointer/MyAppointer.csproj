@@ -186,21 +186,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\OffDaysController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Appointments.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DPicker.cs" />
     <Compile Include="Models\JobOwners.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -228,8 +227,6 @@
     <Compile Include="Models\OffDays.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PersianDatePicker.cs" />
-    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\Services.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -249,6 +246,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CreateOffDays.css" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap-tour.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -260,6 +258,7 @@
     <Content Include="Content\css\elfinder.min.css" />
     <Content Include="Content\css\elfinder.theme.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\jquery-ui-1.8.14.css" />
     <Content Include="Content\css\jquery.noty.css" />
     <Content Include="Content\css\uploadify.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -388,6 +387,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\CreateOffDays.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\TimeTable.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -433,15 +433,6 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -468,14 +459,17 @@
     <Content Include="Views\Job\Edit.cshtml" />
     <Content Include="Views\Job\Delete.cshtml" />
     <Content Include="Views\Shared\Personal.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
-    <Content Include="Views\JobTypes\DateTest.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Service\Create.cshtml" />
     <Content Include="Views\Home\info.cshtml" />
     <Content Include="Views\Shared\TimeTable.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Search\filter.cshtml" />
+    <Content Include="Views\JobTypes\DatePicker.cshtml" />
+    <Content Include="Views\OffDays\Index.cshtml" />
+    <Content Include="Views\OffDays\Details.cshtml" />
+    <Content Include="Views\OffDays\Create.cshtml" />
+    <Content Include="Views\OffDays\Edit.cshtml" />
+    <Content Include="Views\OffDays\Delete.cshtml" />
+    <Content Include="Views\Shared\_DatePicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

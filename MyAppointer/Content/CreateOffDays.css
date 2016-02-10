@@ -1,0 +1,20 @@
+﻿        p {
+            padding: 25px;
+            margin: 25px auto;
+            width: 450px;
+        }
+
+            p.ui-state-hover {
+                font-weight: normal;
+            }
+
+            p.ui-widget-header {
+                text-align: center;
+                font-weight: normal;
+            }
+
+        strong.ui-state-error {
+            display: block;
+            padding: 3px;
+            text-align: center;
+        }

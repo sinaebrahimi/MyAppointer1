@@ -38,6 +38,16 @@ namespace MyAppointer.Controllers
             Users user = db.Users.Find(JobOwnerId);
             Jobs job = db.Jobs.Where(model => model.FirstJobOwner.Equals(JobOwnerId)).FirstOrDefault();
             JobOwners jobowner = db.JobOwners.Where(model => model.JobId.Equals(job.Id)).FirstOrDefault();
+
+            timeTable.jobOwner = jobowner;
+            if(Session["LogedUserID"] != null)
+            {
+                timeTable.userId = Session["LogedUserID"].ToString();
+            } else {
+                timeTable.userId = "";
+            }
+            
+
             var services = db.Services.Where(model => model.JobOwnerId.Equals(jobowner.Id));
 
             foreach (Services service in services)
@@ -54,25 +64,30 @@ namespace MyAppointer.Controllers
 
             foreach (WeeklyWorkingDays wwd in weeklyworkingdays)
             {
-                ViewBag.day += (wwd.Day+1).ToString();
                 days.Add(wwd.Day);
-                //timeTable.days.Add(wwd.Day);
-                //ViewBag.Message += "  " + wwd.Day; 
             }
-            // timeTable.days = days;
+            
             timeTable.days=days;
-            //ViewBag.days = days;
+            
 
             var weeklyworkingTimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             List<WeeklyWorkingTimes> times = new List<WeeklyWorkingTimes>();
             foreach (WeeklyWorkingTimes wwt in weeklyworkingTimes)
             {
                 times.Add(wwt);
-                ViewBag.Times += wwt.StartTime+"-" + wwt.EndTime + ",";
             }
             timeTable.times = times;
 
+            List<Appointments> appointments_list = new List<Appointments>();
+            var appointments_query = db.Appointments.Where(model => model.JobOwnerId.Equals(jobowner.Id));
+            foreach (Appointments appointment in appointments_query)
+            {
+                appointments_list.Add(appointment);
+            }
+            timeTable.appointments = appointments_list;
+            
             ViewBag.timeTable = timeTable;
+
 
             var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             foreach (OffDays od in offdays)

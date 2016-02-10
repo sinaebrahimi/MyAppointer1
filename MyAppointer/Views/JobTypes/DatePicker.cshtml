@@ -1,0 +1,128 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DatePicker</title>
+
+
+    <link type="text/css" href="~/Content/css/jquery-ui-1.8.14.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.ui.datepicker-cc.js"></script>
+    <script type="text/javascript" src="~/Scripts/calendar.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.ui.datepicker-cc-ar.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.ui.datepicker-cc-fa.js"></script>
+    <script type="text/javascript" src="~/Scripts/ng_all.js"></script>
+    <script type="text/javascript" src="~/Scripts/components/timepicker.js"></script>
+    <script type="text/javascript">
+        ng.ready(function () {
+
+
+            $(function () {
+
+                //-----------------------------------
+                // پرکردن فیلد اضافی
+                $("#datepicker").datepicker({
+                    dateFormat: 'yymmdd',
+                    altField: '#alternate',
+                    altFormat: 'DD، d MM yy'
+                });
+            });
+            var my_timepicker = new ng.TimePicker({
+                input: 'my_timepicker_input',
+                placement: 'bltl',
+                close_on_select: false
+            });
+
+        });
+    </script>
+    <style type="text/css">
+        * {
+            font-family: Tahoma !important;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        body {
+            background-color: #0972a5;
+            direction: rtl;
+            font-size: 80%;
+        }
+
+        p {
+            padding: 25px;
+            margin: 25px auto;
+            width: 450px;
+        }
+
+            p.ui-state-hover {
+                font-weight: normal;
+            }
+
+            p.ui-widget-header {
+                text-align: center;
+                font-weight: normal;
+            }
+
+        strong.ui-state-error {
+            display: block;
+            padding: 3px;
+            text-align: center;
+        }
+
+        /*.timeP {
+            padding: 25px;
+            margin: 2px auto;
+            width: 200px;
+        }*/
+    </style>
+</head>
+<body>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>JobTypes</legend>
+
+            <div>
+
+                <p class='ui-widget-content'>
+                    <strong class='ui-state-error'>تاریخ و ساعت مورد نظرتان را انتخاب کنید:</strong><br />
+                    تاریخ:
+                    <input type="text" id="datepicker" name="datepicker" />
+                    <input type="text" id="alternate" size="30" />
+                </p>
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+
+
+    @*<div class="timeP">
+            <b>
+                ساعت:
+            </b>
+            <input type="text" id="my_timepicker_input" name="my_timepicker_input">
+        </div>*@
+
+
+
+
+
+
+</body>
+</html>

@@ -59,35 +59,47 @@ namespace MyAppointer.Controllers
             //var weeklyworkingtimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             //var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
 
-            if (ModelState.IsValid)
-            {
-
+           // if (ModelState.IsValid)
+           // {
                 
-
-                //db.OffDays.Add(offdays);
                 bv.Jobs.JobTypeId = 1;
-                
+                bv.Jobs.JobTypes = db.JobTypes.Where(model => model.Id.Equals(bv.Jobs.JobTypeId)).FirstOrDefault();
+
+
                 db.Jobs.Add(bv.Jobs);
                 db.SaveChanges();
 
+                bv.JobOwners = new JobOwners();
+                bv.JobOwners.JobId = bv.Jobs.Id;
+                bv.JobOwners.UserId = bv.Jobs.FirstJobOwner;
                 db.JobOwners.Add(bv.JobOwners);
                 db.SaveChanges();
+
+                WorkingTimes WT = new WorkingTimes();
+
+                WT.JobOwnerId = bv.JobOwners.Id;
+
+                db.WorkingTimes.Add(WT);
+                db.SaveChanges();
                 
+                foreach (WeeklyWorkingDays wwd in bv.WeeklyWorkingDays)
+                {
+                    wwd.WorkingTimes = WT;
+                    db.WeeklyWorkingDays.Add(wwd);
+                    db.SaveChanges();
 
-                db.JobTypes.Add(bv.JobTypes);
-                db.SaveChanges();
+                }
 
-                db.WorkingTimes.Add(bv.WorkingTimes);
-                db.SaveChanges();
+                foreach (WeeklyWorkingTimes wwt in bv.WeeklyWorkingTimes)
+                {
+                    wwt.WorkingTimes = WT;
+                    db.WeeklyWorkingTimes.Add(wwt);
+                    db.SaveChanges();
 
-                db.WeeklyWorkingDays.Add(bv.WeeklyWorkingDays);
-                db.SaveChanges();
+                }
 
-                db.WeeklyWorkingTimes.Add(bv.WeeklyWorkingTimes);
-                db.SaveChanges();
-
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
+            //}
 
            // ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", bv.jobs.JobTypeId);
            //ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email", bv.jobs.FirstJobOwner);

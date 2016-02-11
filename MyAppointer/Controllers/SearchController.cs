@@ -13,8 +13,15 @@ namespace MyAppointer.Controllers
         // GET: /Search/
 
         private MyAppointerEntities db = new MyAppointerEntities();
-
         [HttpGet]
+        public ViewResult Index()
+        {
+            var user = new List<Users>() ;
+
+            return View(user);
+        }
+
+        [HttpPost]
         public ViewResult Index(string city, string jtype)
         {
             if (jtype == null || jtype == "")

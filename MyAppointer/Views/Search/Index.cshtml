@@ -8,7 +8,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-   @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+   @using (Html.BeginForm("Index", "Search", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()

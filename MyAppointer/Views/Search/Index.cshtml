@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MyAppointer.Models.Users>
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+   @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div>   
+        
+        <p style="font-size:25px; display:inline">city </p> <input type="text" name="city" />&nbsp;
+        
+        <p style="font-size: 25px; display: inline">job  </p> <input type="text" name="jtype"  />&nbsp;
+        <input class="btn btn-default" type="submit" value="Search" id="btnSubmit" />
+
+       
+            
+</div>
+
+
+   }
+
+
+       
+            
+        @foreach (var item in Model) {
+        
+            <div class="container" style="margin-top:50px;">
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <canvas class="header-bg" width="250" height="70" id="header-blur" style="margin-top:100px;"  ></canvas>
+                            <div class="avatar">
+
+                                <img src="~/Content/images/default_user_icon.png" />
+                            </div>
+                            <div class="content">
+                                <p>
+                                    @item.FullName <br>
+                                    @item.City<br>
+                                    @item.About
+                                </p>
+                                <p><button type="button" class="btn btn-default">Appointment</button></p>
+                            </div>
+                        </div>
+                    </div>
+                   
+
+            
+        </div>
+                </div>
+
+
+        }
+           
+
+

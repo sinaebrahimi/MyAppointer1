@@ -40,13 +40,14 @@ namespace MyAppointer.Controllers
             JobOwners jobowner = db.JobOwners.Where(model => model.JobId.Equals(job.Id)).FirstOrDefault();
 
             timeTable.jobOwner = jobowner;
-            if(Session["LogedUserID"] != null)
+            if (Session["LogedUserID"] != null)
             {
                 timeTable.userId = Session["LogedUserID"].ToString();
-            } else {
+            }
+            else {
                 timeTable.userId = "";
             }
-            
+
 
             var services = db.Services.Where(model => model.JobOwnerId.Equals(jobowner.Id));
 
@@ -66,9 +67,9 @@ namespace MyAppointer.Controllers
             {
                 days.Add(wwd.Day);
             }
-            
-            timeTable.days=days;
-            
+
+            timeTable.days = days;
+
 
             var weeklyworkingTimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             List<WeeklyWorkingTimes> times = new List<WeeklyWorkingTimes>();
@@ -85,7 +86,7 @@ namespace MyAppointer.Controllers
                 appointments_list.Add(appointment);
             }
             timeTable.appointments = appointments_list;
-            
+
             ViewBag.timeTable = timeTable;
 
 

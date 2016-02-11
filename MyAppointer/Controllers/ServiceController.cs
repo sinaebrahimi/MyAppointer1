@@ -10,7 +10,7 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-
+using MyAppointer.Filters;
 using MyAppointer.Models;
 using System.Web.Services.Description;
 
@@ -36,12 +36,9 @@ namespace MyAppointer.Controllers
                 
             }
             var v = db.Users.Where(model => model.Email.Equals(userSettings)).FirstOrDefault();
-
-
-            var q = db.JobOwners.Where(model => model.UserId.Equals(v.Id)).FirstOrDefault();
             var query =
             from Services in db.Services
-            where Services.JobOwnerId == q.Id
+            where Services.JobOwnerId == v.Id
 
             select Services;
 
@@ -88,8 +85,8 @@ namespace MyAppointer.Controllers
 
             }
             var v = db.Users.Where(model => model.Email.Equals(userSettings)).FirstOrDefault();
-            var q = db.JobOwners.Where(model => model.UserId.Equals(v.Id)).FirstOrDefault();
-            Service.JobOwnerId = q.Id;
+
+            Service.JobOwnerId = v.Id;
             if (ModelState.IsValid)
             {
                 db.Services.Add(Service);
@@ -135,7 +132,6 @@ namespace MyAppointer.Controllers
          [HttpPost]
         public ActionResult Delete(int[] ID)
         {
-
             foreach (int item in ID)
             {
                 Services Service = db.Services.Where(model => model.Id.Equals(item)).FirstOrDefault();

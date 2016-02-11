@@ -1,26 +1,25 @@
 ﻿@{
     ViewBag.Title = "info";
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/week-picker-view.css" rel="stylesheet" />
-    <link href="~/Content/TimeTable.css" rel="stylesheet" />
-    <script src="~/Scripts/week-picker.js"></script>
-    <title>Testing Calender</title>
-</head>
-<body>
+@section JavaScript
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.core.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/calendar.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-ar.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-fa.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/components/timepicker.js")"></script>
+
+}
+
+@section CSS
+{
+    <link href="@Url.Content("~/Content/css/jquery-ui-1.8.14.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/TimeTable.css")" rel="stylesheet" type="text/css" />
+}
+
     @ViewBag.Message
-    <input data-weekpicker="weekpicker" data-week_start="1" />
-    </br>
-    @*<table>
-        @foreach (MyAppointer.Models.WeeklyWorkingDays day in ViewBag.days)
-        { 
-            <tr><td> @day.Day </td></tr>
-        }
-    </table>*@
+
     @Html.Partial("~/Views/Shared/TimeTable.cshtml", new MyAppointer.Models.TimeTable() , new ViewDataDictionary {{ "data", (MyAppointer.Models.TimeTable)ViewBag.timeTable }})
-</body>
-</html>

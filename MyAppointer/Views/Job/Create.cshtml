@@ -1,4 +1,4 @@
-﻿@model MyAppointer.Models.Jobs
+﻿@model MyAppointer.Models.BigViewModel
 
 @{
     ViewBag.Title = "Creating your Job";
@@ -6,7 +6,8 @@
 
 <h2>Creating your Job</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create", "Job", FormMethod.Post))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -14,52 +15,91 @@
         <legend>Jobs</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Title)
+            @Html.LabelFor(model => model.Jobs.Title)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Title)
-            @Html.ValidationMessageFor(model => model.Title)
+            @Html.EditorFor(model => model.Jobs.Title)
+            @Html.ValidationMessageFor(model => model.Jobs.Title)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.JobPhone)
+            @Html.LabelFor(model => model.Jobs.JobPhone)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.JobPhone)
-            @Html.ValidationMessageFor(model => model.JobPhone)
+            @Html.EditorFor(model => model.Jobs.JobPhone)
+            @Html.ValidationMessageFor(model => model.Jobs.JobPhone)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Address)
+            @Html.LabelFor(model => model.Jobs.Address)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Address)
-            @Html.ValidationMessageFor(model => model.Address)
+            @Html.EditorFor(model => model.Jobs.Address)
+            @Html.ValidationMessageFor(model => model.Jobs.Address)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs.About)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Jobs.About)
+            @Html.ValidationMessageFor(model => model.Jobs.About)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.About)
+            @Html.LabelFor(model => model.Jobs.JobTypeId, "Job Types")
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.About)
-            @Html.ValidationMessageFor(model => model.About)
+        @*<div class="editor-field">
+            @Html.DropDownList("JobTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Jobs.JobTypeId)
+        </div>*@
+
+        <div  class="editor-label">
+            @Html.LabelFor(model => model.Jobs.FirstJobOwner, "Job Types")
+            @Html.EditorFor(model => model.Jobs.FirstJobOwner)
         </div>
 
+@*
         <div class="editor-label">
-            @Html.LabelFor(model => model.JobTypeId, "Job Types")
+            @Html.LabelFor(model => model.JobTypes.Title, "Job Types")
         </div>
         <div class="editor-field">
             @Html.DropDownList("JobTypeId", String.Empty)
-            @Html.ValidationMessageFor(model => model.JobTypeId)
+            @Html.ValidationMessageFor(model => model.JobTypes.Title)
         </div>
 
-        @*<div class="editor-label">
+    @*<div class="editor-label">
             @Html.LabelFor(model => model.FirstJobOwner, "Users")
         </div>
         <div class="editor-field">
             @Html.DropDownList("FirstJobOwner", String.Empty)
             @Html.ValidationMessageFor(model => model.FirstJobOwner)
         </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OffDays.OffDay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OffDays.OffDay)
+            @Html.ValidationMessageFor(model => model.OffDays.OffDay)
+        </div>
+@for (int i = 0; i < 2; i++)
+{
+    @Html.Raw("</br>  Days  </br>")
+    @Html.HiddenFor(model => model.WeeklyWorkingDays[i].Id)
+    @Html.EditorFor(model => model.WeeklyWorkingDays[i].Day)
+}
+
+
+
+@for (int i = 0; i < 2; i++)
+{
+    @Html.Raw("</br>  Times  </br>")
+    @Html.HiddenFor(model => model.WeeklyWorkingTimes[i].Id)
+    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].StartTime)
+    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].EndTime)
+
+}
 
         <p>
             <input type="submit" value="Create" />

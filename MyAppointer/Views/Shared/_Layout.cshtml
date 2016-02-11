@@ -16,7 +16,8 @@
     <link href="~/Content/css/custom.css" rel="stylesheet" />
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
+    @RenderSection("JavaScript", required: false)
+    @RenderSection("CSS", required: false)
 
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")

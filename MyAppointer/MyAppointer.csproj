@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +228,7 @@
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersianDatePicker.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\Services.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -469,6 +471,8 @@
     <Content Include="Views\Service\Create.cshtml" />
     <Content Include="Views\Home\info.cshtml" />
     <Content Include="Views\Shared\TimeTable.cshtml" />
+    <Content Include="Views\Search\filter.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

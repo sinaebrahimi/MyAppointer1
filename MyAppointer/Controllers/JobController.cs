@@ -18,8 +18,8 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
-            /*var jobs = db.Jobs.Include(j => j.JobTypes).Include(j => j.Users);*/
-            return View(/*jobs.ToList()*/);
+            var jobs = db.Jobs.Include(j => j.JobTypes).Include(j => j.Users);
+            return View(jobs.ToList());
         }
 
         //
@@ -39,9 +39,7 @@ namespace MyAppointer.Controllers
         public ActionResult Create()
         {
             ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", "Select Job Type");
-            ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email");
-            
-
+            ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email");          
 
             return View();
         }
@@ -53,7 +51,6 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BigViewModel bv)
         {
-
             
                 bv.Jobs.JobTypes = db.JobTypes.Where(model => model.Id.Equals(bv.Jobs.JobTypeId)).FirstOrDefault();
                 

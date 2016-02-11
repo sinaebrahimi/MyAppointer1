@@ -82,4 +82,24 @@
         });
     });
 
+
+    $('.clockpicker').clockpicker();
+    $('#StartTimeClock').blur(function () {
+
+        var x = $('#StartTimeClock').val();
+
+        var res = x.split(":");
+
+        var parseClock = parseInt(res[0], 10);
+
+        var parseMinute = parseInt(res[1],10);
+        parsed = (parseClock * 60) + (parseMinute);
+        
+        //$('#StartTime').val() = parsed;
+        document.getElementById("StartTime").value = parsed;
+
+
+
+
+    });
 });

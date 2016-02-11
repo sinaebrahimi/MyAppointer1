@@ -1,63 +1,69 @@
 ﻿@model IEnumerable<MyAppointer.Models.Jobs>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List of Jobs";
 }
 
-<h2>Index</h2>
 
-<p>
+<br/>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+</p>*@
+<table font-size:1.35em;" >
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.JobPhone)
+            @Html.DisplayName("Name")
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.About)
+            @Html.DisplayNameFor(model => model.Users.City)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.JobTypes.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Users.Email)
+            @Html.DisplayName("Phone Number")
         </th>
+
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.Id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.JobPhone)
+
+            <a href="@Url.Action("Details", new { id=item.Id})">@Html.DisplayFor(modelItem => item.Title)</a>
+
+            @*@Str=modelItem => item.Title;
+            @Html.ActionLink(Convert.ToString(modelItem => item.Title), "Details", new { id = item.Id })*@
+            
+            @*@Html.DisplayFor(modelItem => item.Title)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.About)
+            @Html.DisplayFor(modelItem => item.Users.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)
+            @Html.DisplayFor(modelItem => item.Users.City)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.JobTypes.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Users.Email)
+            @Html.DisplayFor(modelItem => item.JobPhone)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        
+        </tr>
 }
 
 </table>

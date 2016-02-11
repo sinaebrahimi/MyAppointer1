@@ -9,12 +9,29 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using MyAppointer.Models;
+using Newtonsoft.Json;
 
 namespace MyAppointer.Controllers
 {
     public class AppointmentController : ApiController
     {
         private MyAppointerEntities db = new MyAppointerEntities();
+
+        // GET api/Appointment
+        public string GetAppointmentsOfDay(int BookDate,int JobOwnerId)
+        {
+            var appointments = db.Appointments.Where(a => a.BookDate.Equals(BookDate) && a.JobOwnerId.Equals(JobOwnerId));
+            var query = from appointment in appointments
+                        select new
+                        {
+                            startTime = appointment.StartTime,
+                            endTime = appointment.EndTime
+                        };
+
+            var json = JsonConvert.SerializeObject(query.ToArray()); 
+
+            return json;
+        }
 
         // GET api/Appointment
         public IEnumerable<Appointments> GetAppointments()

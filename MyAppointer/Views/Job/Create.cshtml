@@ -76,6 +76,33 @@
             @Html.ValidationMessageFor(model => model.FirstJobOwner)
         </div>*@
 
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OffDays.OffDay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OffDays.OffDay)
+            @Html.ValidationMessageFor(model => model.OffDays.OffDay)
+        </div>
+@for (int i = 0; i < 2; i++)
+{
+    @Html.Raw("</br>  Days  </br>")
+    @Html.HiddenFor(model => model.WeeklyWorkingDays[i].Id)
+    @Html.EditorFor(model => model.WeeklyWorkingDays[i].Day)
+}
+
+
+
+@for (int i = 0; i < 2; i++)
+{
+    @Html.Raw("</br>  Times  </br>")
+    @Html.HiddenFor(model => model.WeeklyWorkingTimes[i].Id)
+    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].StartTime)
+    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].EndTime)
+
+}
+
+
         <p>
             <input type="submit" value="Create" />
         </p>

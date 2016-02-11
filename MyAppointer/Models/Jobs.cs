@@ -28,7 +28,7 @@ namespace MyAppointer.Models
         public int FirstJobOwner { get; set; }
     
         public virtual ICollection<JobOwners> JobOwners { get; set; }
-       
+        public virtual JobTypes JobTypes { get; set; }
         public virtual Users Users { get; set; }
     }
 }

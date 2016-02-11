@@ -1,4 +1,4 @@
-﻿@model MyAppointer.Models.BigViewModel
+﻿@model MyAppointer.Models.Jobs
 
 @{
     ViewBag.Title = "Creating your Job";
@@ -6,7 +6,7 @@
 
 <h2>Creating your Job</h2>
 
-@using (Html.BeginForm("Create", "Job", FormMethod.Post))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -15,48 +15,48 @@
         <legend>Jobs</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Jobs.Title)
+            @Html.LabelFor(model => model.Title)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Jobs.Title)
-            @Html.ValidationMessageFor(model => model.Jobs.Title)
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Jobs.JobPhone)
+            @Html.LabelFor(model => model.JobPhone)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Jobs.JobPhone)
-            @Html.ValidationMessageFor(model => model.Jobs.JobPhone)
+            @Html.EditorFor(model => model.JobPhone)
+            @Html.ValidationMessageFor(model => model.JobPhone)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Jobs.Address)
+            @Html.LabelFor(model => model.Address)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Jobs.Address)
-            @Html.ValidationMessageFor(model => model.Jobs.Address)
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
         </div>
         
         <div class="editor-label">
-            @Html.LabelFor(model => model.Jobs.About)
+            @Html.LabelFor(model => model.About)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Jobs.About)
-            @Html.ValidationMessageFor(model => model.Jobs.About)
+            @Html.EditorFor(model => model.About)
+            @Html.ValidationMessageFor(model => model.About)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Jobs.JobTypeId, "Job Types")
+            @Html.LabelFor(model => model.JobTypeId, "Job Types")
         </div>
         @*<div class="editor-field">
             @Html.DropDownList("JobTypeId", String.Empty)
             @Html.ValidationMessageFor(model => model.Jobs.JobTypeId)
         </div>*@
-
+        @*
         <div  class="editor-label">
-            @Html.LabelFor(model => model.Jobs.FirstJobOwner, "Job Types")
-            @Html.EditorFor(model => model.Jobs.FirstJobOwner)
+            @Html.LabelFor(model => model.FirstJobOwner, "Job Types")
+            @Html.EditorFor(model => model.FirstJobOwner)
         </div>
 
 @*
@@ -75,14 +75,6 @@
             @Html.DropDownList("FirstJobOwner", String.Empty)
             @Html.ValidationMessageFor(model => model.FirstJobOwner)
         </div>*@
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.OffDays.OffDay)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.OffDays.OffDay)
-            @Html.ValidationMessageFor(model => model.OffDays.OffDay)
-        </div>
 
         <p>
             <input type="submit" value="Create" />

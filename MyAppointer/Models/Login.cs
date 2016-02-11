@@ -15,7 +15,6 @@ namespace MyAppointer.Models
     
         public int Id { get; set; }
 
-
         [Required]
         [EmailAddress]
         [StringLength(32)]

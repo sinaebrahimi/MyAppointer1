@@ -69,6 +69,8 @@ namespace MyAppointer.Controllers
             var v = db.Users.Where(model => model.Email.Equals(u.Email)).FirstOrDefault();
             return Json(v == null);
         }
+
+        [HttpPost]
         public JsonResult doesPhoneNumberExist(Users u)
         {
             var v = db.Users.Where(model => model.Phone.Equals(u.Phone)).FirstOrDefault();
@@ -85,18 +87,18 @@ namespace MyAppointer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Users u)
+        public ActionResult Login(Login l)
         {
         
           using (db)
                {
-                   var v = db.Users.Where(model => model.Email.Equals(u.Email) && model.Password.Equals(u.Password)).FirstOrDefault();
+                   var v = db.Users.Where(model => model.Email.Equals(l.Email) && model.Password.Equals(l.Password)).FirstOrDefault();
                    if (v != null)
                    {
                        Session["LogedUserID"] = v.Id.ToString();
                        Session["LogedUserFullname"] = v.FullName.ToString();
                        HttpCookie aCookie = new HttpCookie("userInfo");
-                       aCookie.Values["userName"] = u.Email;
+                       aCookie.Values["userName"] = l.Email;
                        aCookie.Values["lastVisit"] = DateTime.Now.ToString();
                        aCookie.Expires = DateTime.Now.AddDays(1);
                        Response.Cookies.Add(aCookie);

@@ -4,24 +4,71 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Title)'s Info</h2>
 
-<fieldset>
-    <legend>Jobs</legend>
-
+<fieldset style="font-size:1.4em;">
+    @*<legend>Jobs</legend>*@
+    <br/>
+    <br/>
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Title)
     </div>
+
     <div class="display-field">
         @Html.DisplayFor(model => model.Title)
     </div>
 
+    <br />
+
+
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.JobPhone)
+        @Html.DisplayName("Job Category")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.JobTypes.Title)
+    </div>
+
+
+    <br/>
+
+
+    <div class="display-label">
+        @Html.DisplayName("Name")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Users.FullName)
+    </div>
+
+    <br/>
+    <div class="display-label">
+         @Html.DisplayName("Phone Number")
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.JobPhone)
     </div>
+
+
+
+    <br/>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div> 
+
+    <br/>
+
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Users.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Users.Email)
+    </div>
+
+    <br/>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.About)
@@ -29,29 +76,18 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.About)
     </div>
+    <br/>
+    <br/>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Address)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address)
-    </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.JobTypes.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.JobTypes.Title)
-    </div>
+    <a href="~/Home/info?JobOwnerId=@Model.FirstJobOwner ">Reserve</a>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Users.Email)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Users.Email)
-    </div>
+
+    @Html.ActionLink("Reserve A Time", "Home", "info", new { JobOwnerId = Model.FirstJobOwner })
+    @*<button name="reserve" id="reserve"><a href="~/Home/info/"></a></button>*@
+    @*a button for reservation*@
+
+
+    <br/>
+
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

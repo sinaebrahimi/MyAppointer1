@@ -54,21 +54,9 @@ namespace MyAppointer.Controllers
         public ActionResult Create(BigViewModel bv)
         {
 
-            //jobs.FirstJobOwner = Int32.Parse(Request.QueryString["FirstJobOwner"]);
-
-            //JobOwners jobowner = db.JobOwners.Where(model => model.JobId.Equals(jobs.Id)).FirstOrDefault();
-            //WorkingTimes workingTime = db.WorkingTimes.Where(model => model.JobOwnerId.Equals(jobowner.Id)).FirstOrDefault();
-           // var weeklyworkingdays = db.WeeklyWorkingDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
-            //var weeklyworkingtimes = db.WeeklyWorkingTimes.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
-            //var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
-
-           // if (ModelState.IsValid)
-           // {
-                
-                //bv.Jobs.JobTypeId = 1;
+            
                 bv.Jobs.JobTypes = db.JobTypes.Where(model => model.Id.Equals(bv.Jobs.JobTypeId)).FirstOrDefault();
-                // bv.Jobs.Users = db.Users.Find(Session["LogedUserID"].ToString());
-                //Session["LogedUserID"] = "1";
+                
                 bv.Jobs.FirstJobOwner = Int32.Parse(Session["LogedUserID"].ToString());
                 db.Jobs.Add(bv.Jobs);
                 db.SaveChanges();
@@ -103,11 +91,6 @@ namespace MyAppointer.Controllers
                 }
 
             return RedirectToAction("Index", "Home");
-            //}
-
-           // ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", bv.jobs.JobTypeId);
-           //ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email", bv.jobs.FirstJobOwner);
-            return View(bv.Jobs);
         }
 
         //

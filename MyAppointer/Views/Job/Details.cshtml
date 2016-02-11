@@ -80,10 +80,10 @@
     <br/>
 
 
-    <a href="~/Home/info?JobOwnerId=@Model.FirstJobOwner ">Reserve</a>
+    <button><a href="~/Home/info?JobOwnerId=@Model.FirstJobOwner ">Reserve</a></button>
 
 
-    @Html.ActionLink("Reserve A Time", "Home", "info", new { JobOwnerId = Model.FirstJobOwner })
+    @*@Html.ActionLink("Reserve A Time", "Home", "info", new { JobOwnerId = Model.FirstJobOwner })*@
     @*<button name="reserve" id="reserve"><a href="~/Home/info/"></a></button>*@
     @*a button for reservation*@
 

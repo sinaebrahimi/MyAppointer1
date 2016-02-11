@@ -1,5 +1,4 @@
-﻿@model MyAppointer.Models.Jobs
-
+﻿@model MyAppointer.Models.BigViewModel
 @{
     ViewBag.Title = "Creating your Job";
 }
@@ -37,7 +36,7 @@
             @Html.EditorFor(model => model.Address)
             @Html.ValidationMessageFor(model => model.Address)
         </div>
-        
+
         <div class="editor-label">
             @Html.LabelFor(model => model.About)
         </div>
@@ -50,31 +49,31 @@
             @Html.LabelFor(model => model.JobTypeId, "Job Types")
         </div>
         @*<div class="editor-field">
-            @Html.DropDownList("JobTypeId", String.Empty)
-            @Html.ValidationMessageFor(model => model.Jobs.JobTypeId)
-        </div>*@
+                @Html.DropDownList("JobTypeId", String.Empty)
+                @Html.ValidationMessageFor(model => model.Jobs.JobTypeId)
+            </div>*@
         @*
-        <div  class="editor-label">
-            @Html.LabelFor(model => model.FirstJobOwner, "Job Types")
-            @Html.EditorFor(model => model.FirstJobOwner)
-        </div>
+                    <div  class="editor-label">
+                        @Html.LabelFor(model => model.FirstJobOwner, "Job Types")
+                        @Html.EditorFor(model => model.FirstJobOwner)
+                    </div>
 
-@*
-        <div class="editor-label">
-            @Html.LabelFor(model => model.JobTypes.Title, "Job Types")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("JobTypeId", String.Empty)
-            @Html.ValidationMessageFor(model => model.JobTypes.Title)
-        </div>
+            @*
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.JobTypes.Title, "Job Types")
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownList("JobTypeId", String.Empty)
+                        @Html.ValidationMessageFor(model => model.JobTypes.Title)
+                    </div>
 
-    @*<div class="editor-label">
-            @Html.LabelFor(model => model.FirstJobOwner, "Users")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("FirstJobOwner", String.Empty)
-            @Html.ValidationMessageFor(model => model.FirstJobOwner)
-        </div>*@
+                @*<div class="editor-label">
+                        @Html.LabelFor(model => model.FirstJobOwner, "Users")
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownList("FirstJobOwner", String.Empty)
+                        @Html.ValidationMessageFor(model => model.FirstJobOwner)
+                    </div>*@
 
 
         <div class="editor-label">
@@ -84,23 +83,23 @@
             @Html.EditorFor(model => model.OffDays.OffDay)
             @Html.ValidationMessageFor(model => model.OffDays.OffDay)
         </div>
-@for (int i = 0; i < 2; i++)
-{
-    @Html.Raw("</br>  Days  </br>")
-    @Html.HiddenFor(model => model.WeeklyWorkingDays[i].Id)
-    @Html.EditorFor(model => model.WeeklyWorkingDays[i].Day)
-}
+        @for (int i = 0; i < 2; i++)
+        {
+            @Html.Raw("</br>  Days  </br>")
+            @Html.HiddenFor(model => model.WeeklyWorkingDays[i].Id)
+            @Html.EditorFor(model => model.WeeklyWorkingDays[i].Day)
+        }
 
 
 
-@for (int i = 0; i < 2; i++)
-{
-    @Html.Raw("</br>  Times  </br>")
-    @Html.HiddenFor(model => model.WeeklyWorkingTimes[i].Id)
-    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].StartTime)
-    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].EndTime)
+        @for (int i = 0; i < 2; i++)
+        {
+            @Html.Raw("</br>  Times  </br>")
+            @Html.HiddenFor(model => model.WeeklyWorkingTimes[i].Id)
+            @Html.EditorFor(model => model.WeeklyWorkingTimes[i].StartTime)
+            @Html.EditorFor(model => model.WeeklyWorkingTimes[i].EndTime)
 
-}
+        }
 
 
         <p>

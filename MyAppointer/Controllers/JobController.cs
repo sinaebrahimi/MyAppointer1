@@ -49,7 +49,7 @@ namespace MyAppointer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Jobs jobs)
+        public ActionResult Create(BigViewModel bv)
         {
             //jobs.FirstJobOwner = Int32.Parse(Request.QueryString["FirstJobOwner"]);
 
@@ -105,7 +105,7 @@ namespace MyAppointer.Controllers
 
            // ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", bv.jobs.JobTypeId);
            //ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email", bv.jobs.FirstJobOwner);
-            return View(jobs);
+            return View(bv);
         }
 
         //

@@ -13,6 +13,7 @@ using WebMatrix.WebData;
 using MyAppointer.Filters;
 using MyAppointer.Models;
 using System.Security.Cryptography;
+
 namespace MyAppointer.Controllers
 {
     public class UserController : Controller
@@ -87,7 +88,7 @@ namespace MyAppointer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Login l)
+        public ActionResult Login(Users l)
         {
         
           using (db)
@@ -190,7 +191,7 @@ namespace MyAppointer.Controllers
             Users user = db.Users.Find(id);
             if (user == null)
             {
-               // return HttpNotFound();
+               return HttpNotFound();
             }
             return View(user);
         }
@@ -198,15 +199,15 @@ namespace MyAppointer.Controllers
         // POST: /User/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Users user)
+        public ActionResult Edit(Users editu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(editu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("AfterLogin", "User");
             }
-            return View(user);
+            return View(editu);
         }
 
         //

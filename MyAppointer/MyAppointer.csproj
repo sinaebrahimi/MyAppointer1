@@ -200,6 +200,7 @@
     <Compile Include="Models\Appointments.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BigViewModel.cs" />
     <Compile Include="Models\JobOwners.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -209,7 +210,6 @@
     <Compile Include="Models\JobTypes.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MyAppointer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

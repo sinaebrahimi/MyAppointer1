@@ -38,8 +38,11 @@ namespace MyAppointer.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title");
+            ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", "Select Job Type");
             ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email");
+            
+
+
             return View();
         }
 
@@ -62,10 +65,11 @@ namespace MyAppointer.Controllers
            // if (ModelState.IsValid)
            // {
                 
-                bv.Jobs.JobTypeId = 1;
+                //bv.Jobs.JobTypeId = 1;
                 bv.Jobs.JobTypes = db.JobTypes.Where(model => model.Id.Equals(bv.Jobs.JobTypeId)).FirstOrDefault();
-
-
+                // bv.Jobs.Users = db.Users.Find(Session["LogedUserID"].ToString());
+                //Session["LogedUserID"] = "1";
+                bv.Jobs.FirstJobOwner = Int32.Parse(Session["LogedUserID"].ToString());
                 db.Jobs.Add(bv.Jobs);
                 db.SaveChanges();
 

@@ -4,6 +4,12 @@
     ViewBag.Title = "Creating your Job";
 }
 
+@section JavaScript
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/CreateJob.js")"></script>
+ 
+}
+
 <h2>Creating your Job</h2>
 
 @using (Html.BeginForm("Create", "Job", FormMethod.Post))
@@ -49,15 +55,15 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Jobs.JobTypeId, "Job Types")
         </div>
-        @*<div class="editor-field">
-            @Html.DropDownList("JobTypeId", String.Empty)
-            @Html.ValidationMessageFor(model => model.Jobs.JobTypeId)
-        </div>*@
+        <div class="editor-field">
+           
+        @Html.DropDownList("JobTypeId")
 
-        <div  class="editor-label">
-            @Html.LabelFor(model => model.Jobs.FirstJobOwner, "Job Types")
-            @Html.EditorFor(model => model.Jobs.FirstJobOwner)
-        </div>
+</div>
+
+    <div  class="editor-label">
+        @Html.HiddenFor(model => model.Jobs.JobTypeId)
+    </div>
 
 @*
         <div class="editor-label">
@@ -83,23 +89,20 @@
             @Html.EditorFor(model => model.OffDays.OffDay)
             @Html.ValidationMessageFor(model => model.OffDays.OffDay)
         </div>
-@for (int i = 0; i < 2; i++)
-{
-    @Html.Raw("</br>  Days  </br>")
-    @Html.HiddenFor(model => model.WeeklyWorkingDays[i].Id)
-    @Html.EditorFor(model => model.WeeklyWorkingDays[i].Day)
-}
+        <div class="editor-field days-wrapper">
+            @Html.Raw("</br>  Days  </br>")
+            @Html.HiddenFor(model => model.WeeklyWorkingDays[0].Id)
+            @Html.EditorFor(model => model.WeeklyWorkingDays[0].Day)
+        </div>
+        <br /><input type="button" id="Add_day" value="Add Day"/><br />
 
-
-
-@for (int i = 0; i < 2; i++)
-{
-    @Html.Raw("</br>  Times  </br>")
-    @Html.HiddenFor(model => model.WeeklyWorkingTimes[i].Id)
-    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].StartTime)
-    @Html.EditorFor(model => model.WeeklyWorkingTimes[i].EndTime)
-
-}
+        <div class="editor-field times-wrapper">
+            @Html.Raw("</br>  Times  </br>")
+            @Html.HiddenFor(model => model.WeeklyWorkingTimes[0].Id)
+            @Html.EditorFor(model => model.WeeklyWorkingTimes[0].StartTime)
+            @Html.EditorFor(model => model.WeeklyWorkingTimes[0].EndTime)
+        </div>
+        <br /><input type="button" id="Add_Time" value="Add Time" /><br />
 
         <p>
             <input type="submit" value="Create" />

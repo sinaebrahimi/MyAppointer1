@@ -388,6 +388,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
+	<Content Include="Scripts\components\autocomplete.js" />
+    <Content Include="Scripts\components\calendar.js" />
+    <Content Include="Scripts\components\colorpicker.js" />
+    <Content Include="Scripts\components\slider.js" />
+    <Content Include="Scripts\components\timepicker.js" />
+>>
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\TimeTable.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

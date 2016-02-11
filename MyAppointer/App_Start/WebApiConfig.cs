@@ -10,6 +10,12 @@ namespace MyAppointer
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
+               name: "Web API Resource",
+               routeTemplate: "api/{controller}/{Bookdate}/{JobOwnerId}",
+               defaults: new { code = RouteParameter.Optional }
+               );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

@@ -1,8 +1,51 @@
 ﻿$(document).ready(function () {
-    var days = $('#daysNumber').val();
-    for (i = 0; i < days.length; i++) {
-        $('#TimeTable tbody tr:nth-child(' + days.charAt(i) + ')').removeClass('disabled');
-    }
+    $("#datepicker").datepicker({
+        dateFormat: 'yymmdd',
+        altField: '#alternate',
+        altFormat: 'DD'
+    }).change(function () {
+        $(".day-name").html($("#alternate").val());
+        $("#BookDate").val($(this).val());
+
+        $.ajax({
+            type: "GET",
+            url: "../api/Appointment/"+$(this).val()+"/4",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                var obj = jQuery.parseJSON(msg);
+
+                var startTime, endtime;
+                var percent, right;
+                var LastStartTime = 420;
+                $(".progress.appointments").html("");
+
+                $.each(obj, function (i, object) {
+                    $.each(object, function (key, val) {
+                        if (key == "startTime") {
+                            startTime = val;
+                        } else if (key == "endTime") {
+                            endtime = val;
+                        }
+                    });
+
+                    percent = 100 * ((endtime - startTime) / 840);
+                    right = 100 * ((startTime - 420) / 840);
+
+                    $(".progress.appointments").append("<div class='progress-bar progress-bar-warning' style='width: " + percent + "%;right:" + right + "%'></div>"
+)
+
+                    
+                });
+
+
+               
+               
+            }
+        });
+
+
+    });
 
     var times = $('#dayTimes').val();
     TimeParts = times.split(',');

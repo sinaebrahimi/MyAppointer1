@@ -115,6 +115,15 @@ header .content-wrapper {
     padding-top: 20px; 
 }
 
+/*helpers of label*/
+
+.display-label{
+
+    color:darkgrey;
+    font-size:1.32em;
+}
+
+
 
 
 /* site title

@@ -10,9 +10,29 @@
     width:20% !important;
 }
 
-.table tr td .times.progress .progress-bar{
+.table tr td .times.progress {
+    margin-top:7px;
+    margin-bottom:8px;
+}
+
+.table tr td .times.progress .progress-bar , .table tr td .appointments.progress .progress-bar{
     float:right;
     position:relative;
+}
+
+.table tr td .appointments.progress {
+    top: -27px;
+    position: relative;
+    background-color: rgba(245, 245, 245, 0);
+    margin-bottom:-20px;
+}
+
+.modal .modal-dialog .modal-header {
+    background-color: #31708F !important;
+    direction:rtl;
+}
+.modal .modal-dialog .modal-header .close {
+    float: left !important;
 }
 
 .disabled{

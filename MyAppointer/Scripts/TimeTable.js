@@ -9,7 +9,7 @@
 
         $.ajax({
             type: "GET",
-            url: "../api/Appointment/"+$(this).val()+"/4",
+            url: "../api/Appointment/"+$(this).val()+"/"+$("#JobOwnerId").val(),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {

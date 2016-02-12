@@ -12,6 +12,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using MyAppointer.Models;
 using System.Security.Cryptography;
+
 namespace MyAppointer.Controllers
 {
     public class UserController : Controller
@@ -21,7 +22,7 @@ namespace MyAppointer.Controllers
         public ActionResult Index()
         {
             return View(db.Users.ToList());
-           
+
         }
 
         public ActionResult Details(int id = 0)
@@ -34,7 +35,7 @@ namespace MyAppointer.Controllers
             return View(users);
         }
 
-       
+
 
         public ActionResult Create()
         {
@@ -45,13 +46,15 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Users users)
         {
-            
+
             if (ModelState.IsValid)
             {
                 db.Users.Add(users);
                 db.SaveChanges();
                 if (users.Role == "jobowner")
                 {
+                    Session["LogedUserID"] = users.Id.ToString();
+                    //Session["LogedUserFullname"] = users.FullName.ToString();
                     return RedirectToAction("Create", "Job", new { FirstJobOwner = users.Id });
                 }
                 else
@@ -68,11 +71,13 @@ namespace MyAppointer.Controllers
             var v = db.Users.Where(model => model.Email.Equals(u.Email)).FirstOrDefault();
             return Json(v == null);
         }
+
+        [HttpPost]
         public JsonResult doesPhoneNumberExist(Users u)
         {
             var v = db.Users.Where(model => model.Phone.Equals(u.Phone)).FirstOrDefault();
             return Json(v == null);
-    
+
         }
 
         //login
@@ -84,62 +89,70 @@ namespace MyAppointer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Users u)
+        public ActionResult Login(Users l)
         {
-        
-          using (db)
-               {
-                   var v = db.Users.Where(model => model.Email.Equals(u.Email) && model.Password.Equals(u.Password)).FirstOrDefault();
-                   if (v != null)
-                   {
-                       Session["LogedUserID"] = v.Id.ToString();
-                       Session["LogedUserFullname"] = v.FullName.ToString();
-                       HttpCookie aCookie = new HttpCookie("userInfo");
-                       aCookie.Values["userName"] = u.Email;
-                       aCookie.Values["lastVisit"] = DateTime.Now.ToString();
-                       aCookie.Expires = DateTime.Now.AddDays(1);
-                       Response.Cookies.Add(aCookie);
-                       return RedirectToAction("AfterLogin", "User");
-                   }
-                   else
-                   {
-                       ModelState.AddModelError("", "Email Or Password is Incorrect.");
-                   }
-               }
-          return View();
-        //}
 
-         }
-         public ActionResult AfterLogin()
-         {
-             if (Session["LogedUserID"] != null)
-             {
-                 return View();
-             }
-             else
-             {
-                 return RedirectToAction("Login");
-              }
-         }
+            using (db)
+            {
+                var v = db.Users.Where(model => model.Email.Equals(l.Email) && model.Password.Equals(l.Password)).FirstOrDefault();
+                if (v != null)
+                {
+                    Session["LogedUserID"] = v.Id.ToString();
+                    Session["LogedUserFullname"] = v.FullName.ToString();
+                    HttpCookie aCookie = new HttpCookie("userInfo");
+                    aCookie.Values["userName"] = l.Email;
+                    aCookie.Values["lastVisit"] = DateTime.Now.ToString();
+                    aCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(aCookie);
+                    if(v.Role == "user")
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("AfterLogin", "User");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email Or Password is Incorrect.");
+                }
+            }
+            return View();
+            //}
+
+        }
+        public ActionResult AfterLogin()
+        {
+            if (Session["LogedUserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
 
         //LogOff
-         
+
         [HttpGet]
-         public ActionResult LogOff(){
+        public ActionResult LogOff()
+        {
 
-         //{
-         //    Request.Cookies.Remove("UserId");
-         //    FormsAuthentication.SignOut();
-         //    return RedirectToAction("Login", "Login");
+            //{
+            //    Request.Cookies.Remove("UserId");
+            //    FormsAuthentication.SignOut();
+            //    return RedirectToAction("Login", "Login");
 
-             Session["LogedUserID"] = null;
-             Session["LogedUserFullname"] = null;
-             if (Request.Cookies["UserInfo"]["userName"] != null)
-             {
-                 Request.Cookies["UserInfo"]["userName"]=null;
-             }
-             return RedirectToAction("Index", "Home");//sths
-         }
+            Session["LogedUserID"] = null;
+            Session["LogedUserFullname"] = null;
+            if (Request.Cookies["UserInfo"]["userName"] != null)
+            {
+                Request.Cookies["UserInfo"]["userName"] = null;
+            }
+            return RedirectToAction("Index", "Home");//sths
+        }
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
@@ -187,7 +200,7 @@ namespace MyAppointer.Controllers
             Users user = db.Users.Find(id);
             if (user == null)
             {
-               // return HttpNotFound();
+                return HttpNotFound();
             }
             return View(user);
         }
@@ -195,15 +208,15 @@ namespace MyAppointer.Controllers
         // POST: /User/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Users user)
+        public ActionResult Edit(Users editu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(editu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("AfterLogin", "User");
             }
-            return View(user);
+            return View(editu);
         }
 
         //

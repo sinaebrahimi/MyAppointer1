@@ -10,7 +10,7 @@
         $(".editor-field.times-wrapper").append('<br/>Time['+j+']<br/><input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="WeeklyWorkingTimes_' + j + '__Id" name="WeeklyWorkingTimes[' + j + '].Id" type="hidden" value=""><input class="text-box single-line" data-val="true" data-val-number="The field StartTime must be a number." data-val-required="The StartTime field is required." id="WeeklyWorkingTimes_' + j + '__StartTime" name="WeeklyWorkingTimes[' + j + '].StartTime" type="number" value=""><input class="text-box single-line" data-val="true" data-val-number="The field EndTime must be a number." data-val-required="The EndTime field is required." id="WeeklyWorkingTimes_' + j + '__EndTime" name="WeeklyWorkingTimes[' + j + '].EndTime" type="number" value="">');
         j++;
     });
-    
+    $("#Jobs_JobTypeId").val($("#JobTypeId").val());
     $("#JobTypeId").change(function () {
         $("#Jobs_JobTypeId").val($(this).val());
     });

@@ -53,8 +53,9 @@ namespace MyAppointer.Controllers
         {
             
                 bv.Jobs.JobTypes = db.JobTypes.Where(model => model.Id.Equals(bv.Jobs.JobTypeId)).FirstOrDefault();
-                
+            
                 bv.Jobs.FirstJobOwner = Int32.Parse(Session["LogedUserID"].ToString());
+                bv.Jobs.Users = db.Users.Where(model => model.Id.Equals(bv.Jobs.FirstJobOwner)).FirstOrDefault();
                 db.Jobs.Add(bv.Jobs);
                 db.SaveChanges();
 

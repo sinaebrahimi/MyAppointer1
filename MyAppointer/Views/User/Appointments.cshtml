@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MyAppointer.Models.Appointments>
+
+@{
+    ViewBag.Title = "Appointments";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookDate )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobOwners.Jobs.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime )
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobOwners.Jobs.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime )
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime )
+        </td>
+        <td>
+            @Html.ActionLink("Delete","Delete", "Appointment", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

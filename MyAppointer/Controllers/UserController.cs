@@ -54,7 +54,7 @@ namespace MyAppointer.Controllers
                 if (users.Role == "jobowner")
                 {
                     Session["LogedUserID"] = users.Id.ToString();
-                    //Session["LogedUserFullname"] = users.FullName.ToString();
+                    Session["LogedUserFullname"] = users.FullName.ToString();
                     return RedirectToAction("Create", "Job", new { FirstJobOwner = users.Id });
                 }
                 else
@@ -119,8 +119,6 @@ namespace MyAppointer.Controllers
                 }
             }
             return View();
-            //}
-
         }
         public ActionResult AfterLogin()
         {

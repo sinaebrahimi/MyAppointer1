@@ -1,14 +1,9 @@
 ﻿@model IEnumerable<MyAppointer.Models.Users>
-
-
-
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-   @using (Html.BeginForm("Index", "Search", FormMethod.Post))
+@using (Html.BeginForm("Index", "Search", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -19,17 +14,11 @@
         
         <p style="font-size: 25px; display: inline">job  </p> <input type="text" name="jtype"  />&nbsp;
         <input class="btn btn-default" type="submit" value="Search" id="btnSubmit" />
-
-       
             
 </div>
 
 
    }
-
-
-       
-            
         @foreach (var item in Model) {
         
             <div class="container" style="margin-top:50px;">
@@ -49,18 +38,11 @@
                                     @item.City<br>
                                     @item.About
                                 </p>
-                                <p><button type="button" class="btn btn-default">Appointment</button></p>
+                                <p><a href="~/Home/info?JobOwnerId=@item.Id" class="btn btn-default">Appointment</a></p>
                             </div>
                         </div>
                     </div>
-                   
-
-            
         </div>
-                </div>
+      </div>
 
-
-        }
-           
-
-
+}

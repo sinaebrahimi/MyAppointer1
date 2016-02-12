@@ -65,8 +65,12 @@ namespace MyAppointer.Controllers
 
             foreach (WeeklyWorkingDays wwd in weeklyworkingdays)
             {
+                ViewBag.day += (wwd.Day+1).ToString();
                 days.Add(wwd.Day);
+                //timeTable.days.Add(wwd.Day);
+                //ViewBag.Message += "  " + wwd.Day; 
             }
+
 
             timeTable.days = days;
 
@@ -76,6 +80,7 @@ namespace MyAppointer.Controllers
             foreach (WeeklyWorkingTimes wwt in weeklyworkingTimes)
             {
                 times.Add(wwt);
+                ViewBag.Times += wwt.StartTime+"-" + wwt.EndTime + ",";
             }
             timeTable.times = times;
 
@@ -88,7 +93,6 @@ namespace MyAppointer.Controllers
             timeTable.appointments = appointments_list;
 
             ViewBag.timeTable = timeTable;
-
 
             var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
             foreach (OffDays od in offdays)

@@ -28,25 +28,6 @@
                         <td class="text-center day-name"></td>
                         <td>
                             <div class="progress times">
-                                @{
-                                    float startTime, endtime;
-                                    float percent, right;
-                                    float LastStartTime = 420;
-                                    for (int j = 0; j < obj.times.Count; j++)
-                                    {
-
-                                        startTime = obj.times.ElementAt(j).StartTime;
-                                        endtime = obj.times.ElementAt(j).EndTime;
-                                        percent = 100 * ((endtime - startTime) / 840);
-                                        right = 100 * ((startTime - LastStartTime) / 840);
-                                        LastStartTime = endtime;
-                                        @Html.Raw("<div class='progress-bar progress-bar-success' style='width: " + @percent + "%;right:" + @right + "%' data-toggle='tooltip' data-placement='top' title='"+ Math.Floor(startTime/60).ToString() + ":"+ (startTime % 60).ToString() + "'></div>");
-
-                                    }
-
-                                        }
-                            </div>
-                            <div class="progress appointments">
 
                                 @{
                                     @*for (int j = 0; j < obj.appointments.Count; j++)
@@ -64,45 +45,11 @@
               }
                                     
         </tbody>
+                
+
+
     </table>
-@{ 
-    appointment.BookDate = 13671226;
-    appointment.StartTime = 560;
-    appointment.EndTime = 650;
-    appointment.JobOwnerId = obj.jobOwner.Id;
-    appointment.isReserved = false;
-}
-
-<script src="~/Scripts/TimeTable.js"></script>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Select Time</h4>
-      </div>
-      <div class="modal-body">
-        @using (Html.BeginForm("Home", "info", null, System.Web.Mvc.FormMethod.Post, new { @class = "reserve-form" }))
-        {
-            <fieldset>
-                <legend>Appointments</legend>
-                <input type="text" name="BookDate" id="BookDate" value="@Html.Raw(appointment.BookDate)" class="appointment-fields" />
-                <input type="text" name="StartTime" id="StartTime" value="@Html.Raw(appointment.StartTime)" class="appointment-fields" />
-                <input type="text" name="EndTime" id="EndTime" value="@Html.Raw(appointment.EndTime)" class="appointment-fields" />
-                <input type="text" name="JobOwnerId" id="JobOwnerId" value="@Html.Raw(obj.jobOwner.Id)" class="appointment-fields" />
-                <input type="text" name="UserId" id="UserId" value="@Html.Raw(obj.userId)" class="appointment-fields" />
-                <input type="text" name="Description" id="Description" value="@Html.Raw(appointment.Description)" class="appointment-fields" />
-                <input type="text" name="isReserved" id="isReserved" value="@Html.Raw(appointment.isReserved )" class="appointment-fields" />
-            </fieldset>
-        }
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="submit-appointment">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+

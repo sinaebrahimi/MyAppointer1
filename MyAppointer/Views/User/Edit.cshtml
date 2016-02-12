@@ -23,7 +23,8 @@
             @Html.LabelFor(model => model.Email)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Email)
+            <input type="text" name="NewEmail" value="@ViewBag.Email"/>
+            @Html.HiddenFor(model => model.Email)
             @Html.ValidationMessageFor(model => model.Email)
         </div>
 
@@ -39,7 +40,8 @@
             @Html.LabelFor(model => model.Phone)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Phone)
+            <input type="text" name="NewPhone" value="@ViewBag.Phone" />
+            @Html.HiddenFor(model => model.Phone)
             @Html.ValidationMessageFor(model => model.Phone)
         </div>
 

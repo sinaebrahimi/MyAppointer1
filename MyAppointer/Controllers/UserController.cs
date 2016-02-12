@@ -194,6 +194,8 @@ namespace MyAppointer.Controllers
                 {
                     return HttpNotFound();
                 }
+                ViewBag.Email = user.Email;
+                ViewBag.Phone = user.Phone;
                 return View(user);
             }
             return RedirectToAction("Login");
@@ -202,8 +204,10 @@ namespace MyAppointer.Controllers
         // POST: /User/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Users editu)
+        public ActionResult Edit(Users editu ,string NewEmail,string NewPhone)
         {
+            editu.Email = NewEmail;
+            editu.Phone = NewPhone;
             if (ModelState.IsValid)
             {
                 db.Entry(editu).State = EntityState.Modified;

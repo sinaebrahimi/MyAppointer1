@@ -24,22 +24,28 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login","User");
+            }
+            else if(Session["Role"].ToString() == "user")
+            {
+                return RedirectToAction("Index","Home");
+            }
             string userSettings="";
             if (Request.Cookies["userInfo"] != null)
             {
-                if (Request.Cookies["UserInfo"]["Role"] != "jobowner")
-                {
-                    return RedirectToAction("Index", "Home");
-                } else if (Request.Cookies["UserInfo"]["userName"] != null)
+                if (Request.Cookies["UserInfo"]["userName"] != null)
                 {
                     userSettings = Request.Cookies["UserInfo"]["userName"];
                 }
                 
             }
             var v = db.Users.Where(model => model.Email.Equals(userSettings)).FirstOrDefault();
+            var jo = db.JobOwners.Where(model => model.UserId.Equals(v.Id)).FirstOrDefault();
             var query =
             from Services in db.Services
-            where Services.JobOwnerId == v.Id
+            where Services.JobOwnerId == jo.Id
 
             select Services;
 
@@ -67,7 +73,15 @@ namespace MyAppointer.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login","User");
+            }
+            else if (Session["Role"].ToString() == "user")
+            {
+                return RedirectToAction("Index","Home");
+            }
+            return View();  
         }
 
 
@@ -75,6 +89,14 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Services Service)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login","User");
+            }
+            else if (Session["Role"].ToString() == "user")
+            {
+                return RedirectToAction("Index","Home");
+            }
             string userSettings = "";
             if (Request.Cookies["userInfo"] != null)
             {
@@ -86,8 +108,8 @@ namespace MyAppointer.Controllers
 
             }
             var v = db.Users.Where(model => model.Email.Equals(userSettings)).FirstOrDefault();
-
             Service.JobOwnerId = v.Id;
+            Service.JobOwners = db.JobOwners.Where(model => model.UserId.Equals(v.Id)).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 db.Services.Add(Service);

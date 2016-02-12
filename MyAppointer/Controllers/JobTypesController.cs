@@ -18,7 +18,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
-            if (Session["Role"].ToString() == "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            }else if (Session["Role"].ToString() == "admin")
             {
                 return View(db.JobTypes.ToList());
             }else{
@@ -32,8 +35,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Details(int id = 0)
         {
-
-            if (Session["Role"].ToString() != "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            }else if (Session["Role"].ToString() != "admin")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -50,7 +55,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Create()
         {
-            if (Session["Role"].ToString() != "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            } else if (Session["Role"].ToString() != "admin")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -64,7 +72,10 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(JobTypes jobtypes)
         {
-            if (Session["Role"].ToString() != "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            }else if (Session["Role"].ToString() != "admin")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -83,7 +94,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            if (Session["Role"].ToString() != "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            }else if (Session["Role"].ToString() != "admin")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -102,7 +116,10 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(JobTypes jobtypes)
         {
-            if (Session["Role"].ToString() != "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            }else if (Session["Role"].ToString() != "admin")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -120,7 +137,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            if (Session["Role"].ToString() != "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            } else if (Session["Role"].ToString() != "admin")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -139,7 +159,10 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Session["Role"].ToString() != "admin")
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Login");
+            }else if (Session["Role"].ToString() != "admin")
             {
                 return RedirectToAction("Login", "Home");
             }

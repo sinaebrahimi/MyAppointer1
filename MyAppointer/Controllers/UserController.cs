@@ -21,23 +21,24 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
-            if (Session["Role"].ToString() == "admin")
+            if (Session["Role"] != null)
             {
-                return View(db.Users.ToList());
+                if (Session["Role"].ToString() == "admin")
+                {
+                    return View(db.Users.ToList());
+                }
+                else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
+                {
+                    return RedirectToAction("ListAppointment");
+                }
             }
-            else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
-            {
-                return RedirectToAction("ListAppointment");
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            return RedirectToAction("Login");
         }
 
         public ActionResult Details(int id = 0)
         {
-            if (Session["Role"].ToString() == null)
+           
+            if (Session["Role"] == null)
             {
                 return RedirectToAction("Login");
             }
@@ -177,21 +178,25 @@ namespace MyAppointer.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (Session["Role"].ToString() == null)
+            if (Session["Role"] != null)
             {
-                return RedirectToAction("Login");
+                if (Session["Role"].ToString() == null)
+                {
+                    return RedirectToAction("Login");
+                }
+                else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
+                {
+                    id = Int32.Parse(Session["LogedUserID"].ToString());
+                }
+
+                Users user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(user);
             }
-            else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
-            {
-                id = Int32.Parse(Session["LogedUserID"].ToString());
-            }
-            
-            Users user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+            return RedirectToAction("Login");
         }
 
         // POST: /User/Edit/5
@@ -213,7 +218,7 @@ namespace MyAppointer.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            if (Session["Role"].ToString() == null)
+            if (Session["Role"] == null)
             {
                 return RedirectToAction("Login");
             }
@@ -246,7 +251,7 @@ namespace MyAppointer.Controllers
         public ActionResult ListAppointment()
         {
             IEnumerable<MyAppointer.Models.Appointments> appointments;
-            if (Session["Role"].ToString() == null)
+            if (Session["Role"] == null)
             {
                 return RedirectToAction("Login");
             }
@@ -255,14 +260,13 @@ namespace MyAppointer.Controllers
             }
             else if(Session["Role"].ToString() == "user")
             {
-                appointments = db.Appointments.Where(model => model.JobOwnerId.Equals(Int32.Parse(Session["LogedUserID"].ToString())));
+                int id = Int32.Parse(Session["LogedUserID"].ToString());
+                appointments = db.Appointments.Where(model => model.JobOwnerId.Equals(id));
             }
             else
             {
                 appointments = db.Appointments;
             }
-
-
             return View(appointments);
         }
 

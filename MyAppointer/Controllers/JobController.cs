@@ -18,10 +18,7 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
-            if (Session["Role"].ToString() != "admin")
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            
             var jobs = db.Jobs.Include(j => j.JobTypes).Include(j => j.Users);
             return View(jobs.ToList());
         }
@@ -31,18 +28,7 @@ namespace MyAppointer.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            if (Session["LogedUserID"].ToString() == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            else if (Session["LogedUserID"].ToString() == "user")
-            {
-                return RedirectToAction("Index", "Home");
-            }else if (Session["Role"].ToString() == "jobowner")
-            {
-                id = Int32.Parse(Session["LogedUserID"].ToString());
-            }
-            id = db.JobOwners.Where(model => model.UserId.Equals(id)).FirstOrDefault().Id;
+            //id = db.JobOwners.Where(model => model.UserId.Equals(id)).FirstOrDefault().Id;
 
             Jobs jobs = db.Jobs.Where(model => model.Id.Equals(id)).FirstOrDefault() ;
             if (jobs == null)
@@ -55,9 +41,9 @@ namespace MyAppointer.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (Session["LogedUserID"].ToString() == null)
+            if (Session["LogedUserID"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "User");
             }
             ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", "Select Job Type");
             ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email");          
@@ -72,9 +58,9 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BigViewModel bv)
         {
-            if (Session["LogedUserID"].ToString() == null)
+            if (Session["LogedUserID"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "User");
             }
             else if (Session["LogedUserID"].ToString() == "user")
             {
@@ -125,11 +111,11 @@ namespace MyAppointer.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            if (Session["LogedUserID"].ToString() == null)
+            if (Session["LogedUserID"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "User");
             }
-            else if (Session["LogedUserID"].ToString() == "user")
+            else if (Session["Role"].ToString() == "user")
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -151,9 +137,9 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Jobs jobs)
         {
-            if (Session["LogedUserID"].ToString() == null)
+            if (Session["LogedUserID"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "User");
             }
             else if (Session["LogedUserID"].ToString() == "user")
             {
@@ -176,11 +162,11 @@ namespace MyAppointer.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            if (Session["LogedUserID"].ToString() == null)
+            if (Session["Role"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "User");
             }
-            else if (Session["LogedUserID"].ToString() == "user")
+            else if (Session["Role"].ToString() == "user")
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -200,11 +186,11 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Session["LogedUserID"].ToString() == null)
+            if (Session["Role"] == null)
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "User");
             }
-            else if (Session["LogedUserID"].ToString() == "user")
+            else if (Session["Role"].ToString() == "user")
             {
                 return RedirectToAction("Index", "Home");
             }

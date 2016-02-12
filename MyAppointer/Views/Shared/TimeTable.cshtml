@@ -21,20 +21,11 @@
        </thead> 
         <tbody>
 
-                @if (obj.days.IndexOf(i) == -1)
-                {
-                <tr class="disabled">
-                    <td class="text-center day-name" ></td>
-                    <td></td>
-                </tr>
-
-                }
-                else {
-                    <tr class="" data-toggle="modal" data-target="#myModal" data-date="@Html.Raw(i.ToString())">
+                   <tr class="" data-toggle="modal" data-target="#myModal" data-date="@Html.Raw(i.ToString())">
                         <td class="text-center day-name"></td>
                         <td>
                             <div class="progress times">
-                                @{
+                                @*@{
                                     float startTime, endtime;
                                     float percent, right;
                                     float LastStartTime = 420;
@@ -50,7 +41,7 @@
 
                                     }
 
-                                        }
+                                        }*@
                             </div>
                             <div class="progress appointments">
 

@@ -65,30 +65,6 @@
         @Html.HiddenFor(model => model.Jobs.JobTypeId)
     </div>
 
-@*
-        <div class="editor-label">
-            @Html.LabelFor(model => model.JobTypes.Title, "Job Types")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("JobTypeId", String.Empty)
-            @Html.ValidationMessageFor(model => model.JobTypes.Title)
-        </div>
-
-    @*<div class="editor-label">
-            @Html.LabelFor(model => model.FirstJobOwner, "Users")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("FirstJobOwner", String.Empty)
-            @Html.ValidationMessageFor(model => model.FirstJobOwner)
-        </div>*@
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.OffDays.OffDay)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.OffDays.OffDay)
-            @Html.ValidationMessageFor(model => model.OffDays.OffDay)
-        </div>
         <div class="editor-field days-wrapper">
             @Html.Raw("</br>  Days  </br>")
             @Html.HiddenFor(model => model.WeeklyWorkingDays[0].Id)

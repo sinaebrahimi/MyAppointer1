@@ -1,9 +1,11 @@
 ﻿@if (Session["LogedUserFullname"] != null)
 {
     <text>
-        Welcome @Session["LogedUserFullname"].ToString()
+
+        @Html.ActionLink(@Session["LogedUserFullname"].ToString(), "Edit", "User", new { Id = Session["logeduserid"].ToString() }, null)
+
     </text>
-     <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Log out", "LogOff", "User", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
+    <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("Log out", "LogOff", "User", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
 }
 else
 {

@@ -254,6 +254,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\charisma-app.css" />
     <Content Include="Content\css\chosen.css" />
+    <Content Include="Content\css\clockpicker.css" />
     <Content Include="Content\css\colorbox.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\elfinder.min.css" />
@@ -387,6 +388,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\clockpicker.js" />
     <Content Include="Scripts\components\autocomplete.js" />
     <Content Include="Scripts\components\calendar.js" />
     <Content Include="Scripts\components\colorpicker.js" />

@@ -63,7 +63,7 @@
         </tbody>
     </table>
 @{ 
-    appointment.BookDate = 13941126;
+    //appointment.BookDate = 13941126;
     appointment.StartTime = 560;
     appointment.EndTime = 650;
     appointment.JobOwnerId = obj.jobOwner.Id;
@@ -93,8 +93,8 @@
         {
             <fieldset>
                 <legend>Appointments</legend>
-                @*<input type="text" name="BookDate" id="BookDate" value="@Html.Raw(appointment.BookDate)" class="appointment-fields" />*@
-                @*<input type="text" name="StartTime" id="StartTime" value="@Html.Raw(appointment.StartTime)" class="appointment-fields" />*@
+                <input type="text" name="BookDate" id="BookDate" value="@Html.Raw(appointment.BookDate)" class="appointment-fields" />
+                <input type="text" name="StartTime" id="StartTime" value="@Html.Raw(appointment.StartTime)" class="appointment-fields" />*
 
                 <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
                     <input type="text" id="StartTimeClock" class="form-control appointment-fields" value="13:14">
@@ -102,7 +102,6 @@
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
                 </div>
-                <input type="hidden" name="StartTime" id="StartTime"/>
                 <input type="text" name="EndTime" id="EndTime" value="@Html.Raw(appointment.EndTime)" class="appointment-fields" />
                 <input type="text" name="JobOwnerId" id="JobOwnerId" value="@Html.Raw(obj.jobOwner.Id)" class="appointment-fields" />
                 <input type="text" name="UserId" id="UserId" value="@Html.Raw(obj.userId)" class="appointment-fields" />

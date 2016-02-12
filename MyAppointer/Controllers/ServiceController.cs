@@ -27,8 +27,10 @@ namespace MyAppointer.Controllers
             string userSettings="";
             if (Request.Cookies["userInfo"] != null)
             {
-
-                if (Request.Cookies["UserInfo"]["userName"] != null)
+                if (Request.Cookies["UserInfo"]["Role"] != "jobowner")
+                {
+                    return RedirectToAction("Index", "Home");
+                } else if (Request.Cookies["UserInfo"]["userName"] != null)
                 {
                     userSettings = Request.Cookies["UserInfo"]["userName"];
                 }
@@ -92,8 +94,8 @@ namespace MyAppointer.Controllers
                 db.SaveChanges();
 
             }
-            return View(Service);
-            }
+            return RedirectToAction("Index");
+        }
 
         //
         // POST: /Services/Create
@@ -116,8 +118,6 @@ namespace MyAppointer.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -149,8 +149,6 @@ namespace MyAppointer.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch

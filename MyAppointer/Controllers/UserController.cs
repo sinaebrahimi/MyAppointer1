@@ -21,12 +21,31 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
-
+            if (Session["Role"].ToString() == "admin")
+            {
+                return View(db.Users.ToList());
+            }
+            else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
+            {
+                return RedirectToAction("ListAppointment");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult Details(int id = 0)
         {
+            if (Session["Role"].ToString() == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
+            {
+                id = Int32.Parse(Session["LogedUserID"].ToString());
+            }
+
             Users users = db.Users.Find(id);
             if (users == null)
             {
@@ -54,7 +73,8 @@ namespace MyAppointer.Controllers
                 if (users.Role == "jobowner")
                 {
                     Session["LogedUserID"] = users.Id.ToString();
-                    Session["LogedUserFullname"] = users.FullName.ToString();
+                    Session["LogedUserFullname"] = users.FullName;
+                    Session["Role"] = users.Role;
                     return RedirectToAction("Create", "Job", new { FirstJobOwner = users.Id });
                 }
                 else
@@ -62,7 +82,7 @@ namespace MyAppointer.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return View(users);//jobs
+            return View(users);
         }
 
         [HttpPost]
@@ -98,9 +118,12 @@ namespace MyAppointer.Controllers
                 if (v != null)
                 {
                     Session["LogedUserID"] = v.Id.ToString();
-                    Session["LogedUserFullname"] = v.FullName.ToString();
+                    Session["LogedUserFullname"] = v.FullName;
+                    Session["Role"] = v.Role;
+
                     HttpCookie aCookie = new HttpCookie("userInfo");
                     aCookie.Values["userName"] = l.Email;
+                    aCookie.Values["Role"] = l.Role;
                     aCookie.Values["lastVisit"] = DateTime.Now.ToString();
                     aCookie.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(aCookie);
@@ -137,56 +160,15 @@ namespace MyAppointer.Controllers
         [HttpGet]
         public ActionResult LogOff()
         {
-
-            //{
-            //    Request.Cookies.Remove("UserId");
-            //    FormsAuthentication.SignOut();
-            //    return RedirectToAction("Login", "Login");
-
+            
             Session["LogedUserID"] = null;
             Session["LogedUserFullname"] = null;
+            Session["Role"] = null;
             if (Request.Cookies["UserInfo"]["userName"] != null)
             {
                 Request.Cookies["UserInfo"]["userName"] = null;
             }
             return RedirectToAction("Index", "Home");//sths
-        }
-
-        #region Helpers
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
-        public enum ManageMessageId
-        {
-            ChangePasswordSuccess,
-            SetPasswordSuccess,
-            RemoveLoginSuccess,
-        }
-        #endregion
-
-        public ActionResult SelectCategory()
-        {
-
-            List<SelectListItem> items = new List<SelectListItem>();
-
-            items.Add(new SelectListItem { Text = "user", Value = "0", Selected = true });
-
-            items.Add(new SelectListItem { Text = "jobowner", Value = "1" });
-
-
-            ViewBag.Role = items;
-
-            return View();
-
         }
 
         //
@@ -195,6 +177,15 @@ namespace MyAppointer.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
+            if (Session["Role"].ToString() == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
+            {
+                id = Int32.Parse(Session["LogedUserID"].ToString());
+            }
+            
             Users user = db.Users.Find(id);
             if (user == null)
             {
@@ -222,6 +213,15 @@ namespace MyAppointer.Controllers
 
         public ActionResult Delete(int id = 0)
         {
+            if (Session["Role"].ToString() == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else if (Session["Role"].ToString() == "jobowner" || (Session["Role"].ToString() == "user"))
+            {
+                id = Int32.Parse(Session["LogedUserID"].ToString());
+            }
+
             Users users = db.Users.Find(id);
             if (users == null)
             {
@@ -243,10 +243,36 @@ namespace MyAppointer.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ListAppointment()
+        {
+            IEnumerable<MyAppointer.Models.Appointments> appointments;
+            if (Session["Role"].ToString() == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else if (Session["Role"].ToString() == "jobowner") {
+                appointments = db.Appointments.Where(model => model.JobOwners.UserId.Equals(Int32.Parse(Session["LogedUserID"].ToString())));
+            }
+            else if(Session["Role"].ToString() == "user")
+            {
+                appointments = db.Appointments.Where(model => model.JobOwnerId.Equals(Int32.Parse(Session["LogedUserID"].ToString())));
+            }
+            else
+            {
+                appointments = db.Appointments;
+            }
+
+
+            return View(appointments);
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
         }
+        
     }
 }

@@ -18,6 +18,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var jobs = db.Jobs.Include(j => j.JobTypes).Include(j => j.Users);
             return View(jobs.ToList());
         }
@@ -27,7 +31,20 @@ namespace MyAppointer.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Jobs jobs = db.Jobs.Find(id);
+            if (Session["LogedUserID"].ToString() == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (Session["LogedUserID"].ToString() == "user")
+            {
+                return RedirectToAction("Index", "Home");
+            }else if (Session["Role"].ToString() == "jobowner")
+            {
+                id = Int32.Parse(Session["LogedUserID"].ToString());
+            }
+            id = db.JobOwners.Where(model => model.UserId.Equals(id)).FirstOrDefault().Id;
+
+            Jobs jobs = db.Jobs.Where(model => model.Id.Equals(id)).FirstOrDefault() ;
             if (jobs == null)
             {
                 return HttpNotFound();
@@ -38,6 +55,10 @@ namespace MyAppointer.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["LogedUserID"].ToString() == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             ViewBag.JobTypeId = new SelectList(db.JobTypes, "Id", "Title", "Select Job Type");
             ViewBag.FirstJobOwner = new SelectList(db.Users, "Id", "Email");          
 
@@ -51,8 +72,16 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BigViewModel bv)
         {
-            
-                bv.Jobs.JobTypes = db.JobTypes.Where(model => model.Id.Equals(bv.Jobs.JobTypeId)).FirstOrDefault();
+            if (Session["LogedUserID"].ToString() == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (Session["LogedUserID"].ToString() == "user")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            bv.Jobs.JobTypes = db.JobTypes.Where(model => model.Id.Equals(bv.Jobs.JobTypeId)).FirstOrDefault();
             
                 bv.Jobs.FirstJobOwner = Int32.Parse(Session["LogedUserID"].ToString());
                 bv.Jobs.Users = db.Users.Where(model => model.Id.Equals(bv.Jobs.FirstJobOwner)).FirstOrDefault();
@@ -96,6 +125,15 @@ namespace MyAppointer.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            if (Session["LogedUserID"].ToString() == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (Session["LogedUserID"].ToString() == "user")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             Jobs jobs = db.Jobs.Find(id);
             if (jobs == null)
             {
@@ -113,6 +151,15 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Jobs jobs)
         {
+            if (Session["LogedUserID"].ToString() == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (Session["LogedUserID"].ToString() == "user")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(jobs).State = EntityState.Modified;
@@ -129,6 +176,15 @@ namespace MyAppointer.Controllers
 
         public ActionResult Delete(int id = 0)
         {
+            if (Session["LogedUserID"].ToString() == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (Session["LogedUserID"].ToString() == "user")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             Jobs jobs = db.Jobs.Find(id);
             if (jobs == null)
             {
@@ -144,6 +200,15 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["LogedUserID"].ToString() == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (Session["LogedUserID"].ToString() == "user")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             Jobs jobs = db.Jobs.Find(id);
             db.Jobs.Remove(jobs);
             db.SaveChanges();

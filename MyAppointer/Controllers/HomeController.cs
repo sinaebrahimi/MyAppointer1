@@ -46,23 +46,12 @@ namespace MyAppointer.Controllers
             }
             else {
                 timeTable.userId = "";
-            }
-
-
-            var services = db.Services.Where(model => model.JobOwnerId.Equals(jobowner.Id));
-
-            foreach (Services service in services)
-            {
-                //ViewBag.Message += "  " + service.Title;
-            }
-
-
-
+            }   
+            
             WorkingTimes workingTime = db.WorkingTimes.Where(model => model.JobOwnerId.Equals(jobowner.Id)).FirstOrDefault();
             var weeklyworkingdays = db.WeeklyWorkingDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
 
             List<int> days = new List<int>();
-
             foreach (WeeklyWorkingDays wwd in weeklyworkingdays)
             {
                 days.Add(wwd.Day);
@@ -85,27 +74,10 @@ namespace MyAppointer.Controllers
             {
                 appointments_list.Add(appointment);
             }
+
             timeTable.appointments = appointments_list;
 
             ViewBag.timeTable = timeTable;
-
-
-            var offdays = db.OffDays.Where(model => model.WorkingTimesId.Equals(workingTime.Id));
-            foreach (OffDays od in offdays)
-            {
-                ViewBag.Message = od.OffDay;
-            }
-
-
-
-            //Services service = services[1];
-            //if (user == null)
-            //{
-            //    return HttpNotFound();
-            //}
-
-
-
 
             return View();
         }

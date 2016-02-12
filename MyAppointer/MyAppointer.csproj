@@ -476,6 +476,7 @@
     <Content Include="Views\Shared\TimeTable.cshtml" />
     <Content Include="Views\Search\filter.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\User\ListAppointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

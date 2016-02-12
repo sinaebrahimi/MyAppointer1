@@ -18,7 +18,13 @@ namespace MyAppointer.Controllers
 
         public ActionResult Index()
         {
-            return View(db.JobTypes.ToList());
+            if (Session["Role"].ToString() == "admin")
+            {
+                return View(db.JobTypes.ToList());
+            }else{
+                return RedirectToAction("Login","Home");
+            }
+            
         }
 
         //
@@ -26,6 +32,11 @@ namespace MyAppointer.Controllers
 
         public ActionResult Details(int id = 0)
         {
+
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             JobTypes jobtypes = db.JobTypes.Find(id);
             if (jobtypes == null)
             {
@@ -34,20 +45,15 @@ namespace MyAppointer.Controllers
             return View(jobtypes);
         }
 
-        public ActionResult DateTest()
-        {
-
-
-            return View();
-        }
-
         //
         // GET: /JobTypes/Create
 
         public ActionResult Create()
         {
-
-
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
 
@@ -58,6 +64,10 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(JobTypes jobtypes)
         {
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (ModelState.IsValid)
             {
                 db.JobTypes.Add(jobtypes);
@@ -73,6 +83,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             JobTypes jobtypes = db.JobTypes.Find(id);
             if (jobtypes == null)
             {
@@ -88,6 +102,10 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(JobTypes jobtypes)
         {
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(jobtypes).State = EntityState.Modified;
@@ -102,6 +120,10 @@ namespace MyAppointer.Controllers
 
         public ActionResult Delete(int id = 0)
         {
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             JobTypes jobtypes = db.JobTypes.Find(id);
             if (jobtypes == null)
             {
@@ -117,6 +139,10 @@ namespace MyAppointer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Role"].ToString() != "admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             JobTypes jobtypes = db.JobTypes.Find(id);
             db.JobTypes.Remove(jobtypes);
             db.SaveChanges();

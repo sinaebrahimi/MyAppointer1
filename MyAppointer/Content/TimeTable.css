@@ -20,6 +20,10 @@
     position:relative;
 }
 
+.table tr td .appointments.progress .progress-bar{
+    top:-2px;
+}
+
 .table tr td .appointments.progress {
     top: -27px;
     position: relative;
@@ -38,4 +42,8 @@
 .disabled{
     color: #ccc;
     background-color: #9d9d9d;
+}
+
+.disabled .progress, .disabled .progress-bar.progress-bar-success {
+    background-color: #C54646 !important;
 }

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MyAppointer.Models.Dashboard>
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Personal.cshtml";
+    
+    
+
+
+}
+
+
+<div class=" row" style="width: 600px; font-size: 20px;">
+    <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+            <h3 class="panel-title">Users</h3>
+            <div class="pull-right">
+                <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+            </div>
+        </div>
+
+
+        <table class="table" style="width:600px ;font-size:20px;">
+            <thead>
+                <tr class="filters">
+
+                    <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="BookDate" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="StartTime" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="EndTime" disabled></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+              
+                @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BookDate)
+                            </td>
+                            <td>
+
+
+                                @Html.DisplayFor(modelItem => (item.StartTime))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndTime)
+                            </td>
+                            <td>
+                                <input class="btn btn-primary " style="width:70px;" value="Confirm" onclick="window.location = 'http://localhost:45161//Dashboard/Confirm' + '?' + 'BookId=' + @item.BookId;" />
+                            </td>
+                            <td>
+                                <input class="btn btn-danger " style="width:70px;" value="Cancle" onclick="window.location = 'http://localhost:45161//Dashboard/Cancle' + '?' + 'BookId=' + @item.BookId;" />
+                            </td>
+                            <td>
+                                
+                           
+
+                        </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+</div>
+

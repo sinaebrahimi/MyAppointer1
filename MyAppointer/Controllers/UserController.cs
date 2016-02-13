@@ -260,7 +260,8 @@ namespace MyAppointer.Controllers
                 return RedirectToAction("Login");
             }
             else if (Session["Role"].ToString() == "jobowner") {
-                appointments = db.Appointments.Where(model => model.JobOwners.UserId.Equals(Int32.Parse(Session["LogedUserID"].ToString())));
+                var str = Session["LogedUserID"].ToString();
+                appointments = db.Appointments.Where(model => model.JobOwners.UserId.Equals(Int32.Parse(str)));
             }
             else if(Session["Role"].ToString() == "user")
             {

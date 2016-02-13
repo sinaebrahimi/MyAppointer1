@@ -187,6 +187,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\JobTypesController.cs" />
@@ -200,6 +201,7 @@
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BigViewModel.cs" />
+    <Compile Include="Models\Dashboard.cs" />
     <Compile Include="Models\JobOwners.cs">
       <DependentUpon>MyAppointer.tt</DependentUpon>
     </Compile>
@@ -477,6 +479,7 @@
     <Content Include="Views\Search\filter.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\User\ListAppointment.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

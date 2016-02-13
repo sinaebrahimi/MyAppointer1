@@ -4,30 +4,20 @@
 
 @section JavaScript
 {
-    @*<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>*@
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.core.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/calendar.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-ar.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.ui.datepicker-cc-fa.js")"></script>
-    @*<script type="text/javascript" src="@Url.Content("~/Scripts/components/timepicker.js")"></script>*@
-
-<script type="text/javascript" src="@Url.Content("~/Scripts/clockpicker.js")"></script>
-
+    <script type="text/javascript" src="@Url.Content("~/Scripts/clockpicker.js")"></script>
     }
         
 @section CSS
 {
 <link href="@Url.Content("~/Content/css/jquery-ui-1.8.14.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/TimeTable.css")" rel="stylesheet" type="text/css" />
-
+<link href="@Url.Content("~/Content/TimeTable.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/css/clockpicker.css")" rel="stylesheet" type="text/css" />
-
 }
-
-    @ViewBag.Message
-
-    
-
+   @ViewBag.Message
 
     @Html.Partial("~/Views/Shared/TimeTable.cshtml", new MyAppointer.Models.TimeTable() , new ViewDataDictionary {{ "data", (MyAppointer.Models.TimeTable)ViewBag.timeTable }})
